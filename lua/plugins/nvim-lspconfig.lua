@@ -37,6 +37,10 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 require('lspconfig')['pyright'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
@@ -51,6 +55,7 @@ require 'lspconfig'.clangd.setup {
   flags = lsp_flags,
 }
 require 'lspconfig'.html.setup {
+  capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
 }
@@ -61,6 +66,7 @@ require 'lspconfig'.emmet_ls.setup {
 }
 
 require 'lspconfig'.cssls.setup {
+  capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flags,
 }

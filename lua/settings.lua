@@ -57,7 +57,12 @@ opt.termguicolors = true      -- enable 24-bit RGB colors
 vim.o.background = "dark"     -- or "light" for light mode
 
 require("gruvbox").setup({
-  italic = false,
+  italic = {
+    strings = false,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
 })
 vim.cmd("colorscheme gruvbox")
 

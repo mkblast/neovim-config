@@ -41,7 +41,7 @@ map('n', '<leader>wh', ':hide<CR>', default_opts)
 -- buffer control
 map('n', '<leader>bd', ':bdelete!<CR>', {noremap = true})
 map('n', '<leader>bs', ':w<CR>:bdelete<CR>', {noremap = true})
-map('n', '<leader>bj', '<c-^>', {noremap = true})
+map('n', '<leader>j', '<c-^>', {noremap = true})
 map('n', '<TAB>', ':bnext<CR>', {noremap = true})
 map('n', '<S-TAB>', ':bprevious<CR>', {noremap = true})
 

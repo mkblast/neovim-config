@@ -62,8 +62,6 @@ return packer.startup(function(use)
 
   use 'NvChad/nvim-colorizer.lua'
 
-  use "numtostr/FTerm.nvim"
-
   use 'baskerville/vim-sxhkdrc'
 
   use 'windwp/nvim-ts-autotag'
@@ -101,4 +99,8 @@ return packer.startup(function(use)
       }
     end
   }
+
+  use { "akinsho/toggleterm.nvim", tag = '*', }
+
+  use {"onsails/lspkind.nvim"}
 end)
