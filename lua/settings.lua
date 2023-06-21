@@ -56,15 +56,22 @@ opt.synmaxcol = 240       -- max column for syntax highlight
 opt.termguicolors = true      -- enable 24-bit RGB colors
 vim.o.background = "dark"     -- or "light" for light mode
 
-require("gruvbox").setup({
-  italic = {
-    strings = false,
-    comments = true,
-    operators = false,
-    folds = true,
-  },
+local c = require('vscode.colors').get_colors()
+require('vscode').setup({
+    -- Alternatively set style in setup
+    -- style = 'light'
+
+    -- Enable transparent background
+    transparent = true,
+
+    -- Enable italic comment
+    italic_comments = true,
+
+    -- Disable nvim-tree background color
+    disable_nvimtree_bg = true,
+
 })
-vim.cmd("colorscheme gruvbox")
+require('vscode').load()
 
 -----------------------------------------------------------
 -- Tabs, indent

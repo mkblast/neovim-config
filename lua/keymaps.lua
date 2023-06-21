@@ -10,6 +10,10 @@ local default_opts = {noremap = true, silent = true}
 -- Neovim shortcuts:
 -----------------------------------------------------------
 
+-- some remaps
+map('n', 'gh', 'v0', default_opts)
+map('n', 'gl', 'v$', default_opts)
+
 -- clear search highlighting
 map('n', '<leader>h', ':nohl<CR>', default_opts)
 

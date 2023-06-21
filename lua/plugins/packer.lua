@@ -40,6 +40,7 @@ return packer.startup(function(use)
   })
 
   use "ellisonleao/gruvbox.nvim"
+  use 'Mofiqul/vscode.nvim'
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
