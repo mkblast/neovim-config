@@ -10,11 +10,3 @@ map('n', '<leader>fk', '<cmd>Telescope keymaps<cr>', { noremap = true })
 map('n', '<leader>ts', '<cmd>Telescope treesitter<cr>', { noremap = true })
 
 require('telescope').load_extension('projects')
---
--- require('telescope').setup {
---   pickers = {
---     find_files = {
---       disable_devicons = true
---     },
---   },
--- }

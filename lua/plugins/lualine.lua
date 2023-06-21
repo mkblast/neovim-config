@@ -6,13 +6,14 @@ require 'lualine'.setup {
     section_separators = { left = '', right = '' },
     globalstatus = true,
   },
+
   sections = {
     lualine_c = {
       {
         'filename',
         show_filename_only = false,
-        newfile_status = true;
-        path = 1;
+        newfile_status = true,
+        path = 1,
       }
     }
   }

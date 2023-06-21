@@ -18,27 +18,26 @@ return packer.startup(function(use)
 
   use 'lukas-reineke/indent-blankline.nvim'
 
-  use 'windwp/nvim-autopairs'
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
 
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons', } }
 
   use 'liuchengxu/vista.vim'
 
-  use 'neovim/nvim-lspconfig'
-
-  use { 'hrsh7th/nvim-cmp',
-    requires = {
-      'L3MON4D3/LuaSnip',
-      'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
-      'saadparwaiz1/cmp_luasnip',
-      "rafamadriz/friendly-snippets"
-    },
-  }
-
   use 'nvim-lualine/lualine.nvim'
+
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
 
   use "ellisonleao/gruvbox.nvim"
 
@@ -59,6 +58,7 @@ return packer.startup(function(use)
   use 'ahmedkhalf/project.nvim'
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
 
   use 'NvChad/nvim-colorizer.lua'
 
@@ -84,11 +84,6 @@ return packer.startup(function(use)
   use("petertriho/nvim-scrollbar")
 
   use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-  }
-
-  use {
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",
     config = function()
@@ -100,7 +95,30 @@ return packer.startup(function(use)
     end
   }
 
-  use { "akinsho/toggleterm.nvim", tag = '*', }
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    requires = {
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' }, -- Required
+      {
+        -- Optional
+        'williamboman/mason.nvim',
+        run = function()
+          pcall(vim.cmd, 'MasonUpdate')
+        end,
+      },
+      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-  use {"onsails/lspkind.nvim"}
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },         -- Required
+      { 'hrsh7th/cmp-nvim-lsp' },     -- Required
+      { 'hrsh7th/cmp-buffer' },       -- Required
+      { 'hrsh7th/cmp-path' },         -- Required
+      { 'saadparwaiz1/cmp_luasnip' }, -- Required
+      { 'L3MON4D3/LuaSnip' },         -- Required
+    }
+  }
+
+  use { "akinsho/toggleterm.nvim", tag = '*', }
 end)

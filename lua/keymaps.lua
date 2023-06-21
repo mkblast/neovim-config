@@ -3,9 +3,8 @@
 -- and plugins.
 -----------------------------------------------------------
 
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local default_opts = {noremap = true, silent = true}
-local cmd = vim.cmd
 
 -----------------------------------------------------------
 -- Neovim shortcuts:
@@ -64,6 +63,26 @@ map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
 map("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
   {silent = true, noremap = true}
 )
+
+-- Movment remaps
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
+
+map("n", "J", "mzJ`z")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+
+
+-- Clipboard remaps
+map("x", "<leader>P", [["_dP]])
+map({"n", "v"}, "<leader>p", [["+p]])
+map({"n", "v"}, "<leader>y", [["+y]])
+map("n", "<leader>Y", [["+Y]])
+
+
+map({"n", "v"}, "<leader>d", [["_d]])
 
 -----------------------------------------------------------
 -- Applications & Plugins shortcuts:

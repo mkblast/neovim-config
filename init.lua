@@ -16,10 +16,6 @@
 require('settings')                                     -- settings
 require('keymaps')                                      -- keymaps
 require('plugins/packer')                               -- plugin manager
-require('plugins/nvim-cmp')                             -- autocomplete
-require('plugins/nvim-autopairs')                       -- autopairs
-require('plugins/mason')
-require('plugins/nvim-lspconfig')                       -- LSP settings
 require('plugins/vista')                                -- tag viewer
 require('plugins/lualine')                              -- statue line
 require('plugins/telescope')                            -- fuzzy finder
@@ -33,3 +29,4 @@ require('plugins/nvim-lastplace')
 require('plugins/nvim-scrollbar')
 require('plugins/luasnip')
 require('plugins/toggleterm')
+require('plugins/nvim-lspconfig')
