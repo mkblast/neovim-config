@@ -96,6 +96,8 @@ return packer.startup(function(use)
     end
   }
 
+  use "onsails/lspkind.nvim"
+
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
