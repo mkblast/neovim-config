@@ -4,7 +4,7 @@
 -----------------------------------------------------------
 
 local map = vim.keymap.set
-local default_opts = {noremap = true, silent = true}
+local default_opts = { noremap = true, silent = true }
 
 -----------------------------------------------------------
 -- Neovim shortcuts:
@@ -18,10 +18,10 @@ map('n', 'gl', 'v$', default_opts)
 map('n', '<leader>h', ':nohl<CR>', default_opts)
 
 -- don't use arrow keys
-map('', '<up>', '<nop>', {noremap = true})
-map('', '<down>', '<nop>', {noremap = true})
-map('', '<left>', '<nop>', {noremap = true})
-map('', '<right>', '<nop>', {noremap = true})
+map('', '<up>', '<nop>', default_opts)
+map('', '<down>', '<nop>', default_opts)
+map('', '<left>', '<nop>', default_opts)
+map('', '<right>', '<nop>', default_opts)
 
 -- fast saving with <leader> and s
 map('n', '<leader>s', ':w<CR>', default_opts)
@@ -42,54 +42,54 @@ map('n', '<leader>wo', ':on<CR>', default_opts)
 map('n', '<leader>wh', ':hide<CR>', default_opts)
 
 -- buffer control
-map('n', '<leader>bd', ':bdelete!<CR>', {noremap = true})
-map('n', '<leader>bs', ':w<CR>:bdelete<CR>', {noremap = true})
-map('n', '<leader>j', '<c-^>', {noremap = true})
-map('n', '<TAB>', ':bnext<CR>', {noremap = true})
-map('n', '<S-TAB>', ':bprevious<CR>', {noremap = true})
+map('n', '<leader>bd', ':bdelete!<CR>', default_opts)
+map('n', '<leader>bs', ':w<CR>:bdelete<CR>', default_opts)
+map('n', '<leader>j', '<c-^>', default_opts)
+map('n', '<TAB>', ':bnext<CR>', default_opts)
+map('n', '<S-TAB>', ':bprevious<CR>', default_opts)
 
 -- teminal binding
-map({"t", "n"}, "<a-o>", "<C-\\><C-n>")
+map({ "t", "n" }, "<a-o>", "<C-\\><C-n>")
 
 -- Trouble
 map("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
-  {silent = true, noremap = true}
+  default_opts
 )
 map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  {silent = true, noremap = true}
+  default_opts
 )
 map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
-  {silent = true, noremap = true}
+  default_opts
 )
 map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
-  {silent = true, noremap = true}
+  default_opts
 )
 map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
-  {silent = true, noremap = true}
+  default_opts
 )
 map("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-  {silent = true, noremap = true}
+  default_opts
 )
 
 -- Movment remaps
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "J", ":m '>+1<CR>gv=gv",default_opts)
+map("v", "K", ":m '<-2<CR>gv=gv",default_opts)
 
-map("n", "J", "mzJ`z")
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-map("n", "n", "nzzzv")
-map("n", "N", "Nzzzv")
+map("n", "J", "mzJ`z",default_opts)
+map("n", "<C-d>", "<C-d>zz",default_opts)
+map("n", "<C-u>", "<C-u>zz",default_opts)
+map("n", "n", "nzzzv",default_opts)
+map("n", "N", "Nzzzv",default_opts)
 
 
 -- Clipboard remaps
-map("x", "<leader>P", [["_dP]])
-map({"n", "v"}, "<leader>p", [["+p]])
-map({"n", "v"}, "<leader>y", [["+y]])
-map("n", "<leader>Y", [["+Y]])
+map("x", "<leader>P", [["_dP]],default_opts)
+map({ "n", "v" }, "<leader>p", [["+p]],default_opts)
+map({ "n", "v" }, "<leader>y", [["+y]],default_opts)
+map("n", "<leader>Y", [["+Y]],default_opts)
 
 
-map({"n", "v"}, "<leader>d", [["_d]])
+map({ "n", "v" }, "<leader>d", [["_d]],default_opts)
 
 -----------------------------------------------------------
 -- Applications & Plugins shortcuts:
@@ -100,4 +100,4 @@ map('n', '<leader>R', ':NvimTreeRefresh<CR>', default_opts)  -- refresh
 map('n', '<leader>n', ':NvimTreeFindFile<CR>', default_opts) -- search file
 
 -- Vista tag-viewer
-map('n', '<C-m>', ':Vista!!<CR>', default_opts)   -- open/close
+map('n', '<C-m>', ':Vista!!<CR>', default_opts) -- open/close
