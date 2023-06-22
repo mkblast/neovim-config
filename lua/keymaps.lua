@@ -48,6 +48,9 @@ map('n', '<leader>j', '<c-^>', {noremap = true})
 map('n', '<TAB>', ':bnext<CR>', {noremap = true})
 map('n', '<S-TAB>', ':bprevious<CR>', {noremap = true})
 
+-- teminal binding
+map({"t", "n"}, "<Esc>", "<C-\\><C-n>")
+
 -- Trouble
 map("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
   {silent = true, noremap = true}
