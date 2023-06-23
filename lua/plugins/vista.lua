@@ -1,11 +1,4 @@
------------------------------------------------------------
--- Vista configuration file
------------------------------------------------------------
-
--- Plugin: vista.vim
--- https://github.com/liuchengxu/vista.vim
-
-
+-- aliases
 local g = vim.g
 local cmd = vim.cmd
 

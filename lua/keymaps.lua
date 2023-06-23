@@ -1,14 +1,6 @@
------------------------------------------------------------
--- Keymaps configuration file: keymaps of neovim
--- and plugins.
------------------------------------------------------------
-
+-- aliases
 local map = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
-
------------------------------------------------------------
--- Neovim shortcuts:
------------------------------------------------------------
 
 -- some remaps
 map('n', 'gh', 'v0', default_opts)
@@ -51,7 +43,7 @@ map('n', '<S-TAB>', ':bprevious<CR>', default_opts)
 -- teminal binding
 map({ "t", "n" }, "<a-o>", "<C-\\><C-n>")
 
--- Trouble
+-- trouble.nvim
 map("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
   default_opts
 )
@@ -71,7 +63,7 @@ map("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
   default_opts
 )
 
--- Movment remaps
+-- movment remaps
 map("v", "J", ":m '>+1<CR>gv=gv",default_opts)
 map("v", "K", ":m '<-2<CR>gv=gv",default_opts)
 
@@ -82,7 +74,7 @@ map("n", "n", "nzzzv",default_opts)
 map("n", "N", "Nzzzv",default_opts)
 
 
--- Clipboard remaps
+-- clipboard remaps
 map("x", "<leader>P", [["_dP]],default_opts)
 map({ "n", "v" }, "<leader>p", [["+p]],default_opts)
 map({ "n", "v" }, "<leader>y", [["+y]],default_opts)
@@ -91,9 +83,6 @@ map("n", "<leader>Y", [["+Y]],default_opts)
 
 map({ "n", "v" }, "<leader>d", [["_d]],default_opts)
 
------------------------------------------------------------
--- Applications & Plugins shortcuts:
------------------------------------------------------------
 -- nvim-tree
 map('n', '<C-n>', ':NvimTreeToggle<CR>', default_opts)       -- open/close
 map('n', '<leader>R', ':NvimTreeRefresh<CR>', default_opts)  -- refresh

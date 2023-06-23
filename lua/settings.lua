@@ -1,37 +1,25 @@
------------------------------------------------------------
--- Neovim settings
------------------------------------------------------------
+-- aliases
+local cmd = vim.cmd
+local exec = vim.api.nvim_exec
+local g = vim.g
+local opt = vim.opt
 
------------------------------------------------------------
--- Neovim API aliases
------------------------------------------------------------
---local map = vim.api.nvim_set_keymap  -- set global keymap
-local cmd = vim.cmd     				-- execute Vim commands
-local exec = vim.api.nvim_exec 	-- execute Vimscript
-local g = vim.g         				-- global variables
-local opt = vim.opt         		-- global/buffer/windows-scoped options
+-- general
+g.mapleader = ' '
+opt.mouse = 'a'
+opt.swapfile = false
 
------------------------------------------------------------
--- General
------------------------------------------------------------
-g.mapleader = ' '             -- change leader to a space
-opt.mouse = 'a'               -- enable mouse support
--- opt.clipboard = 'unnamedplus' -- copy/paste to system clipboard
-opt.swapfile = false          -- don't use swapfile
-
------------------------------------------------------------
--- Neovim UI
------------------------------------------------------------
-opt.number = true             -- show line number
+-- ui
+opt.number = true
 opt.rnu = true
-opt.showmatch = true          -- highlight matching parenthesis
-opt.foldmethod = 'marker'     -- enable folding (default 'foldmarker')
-opt.splitright = true         -- vertical split to the right
-opt.splitbelow = true         -- orizontal split to the bottom
-opt.ignorecase = true         -- ignore case letters when search
-opt.smartcase = true          -- ignore lowercase for the whole pattern
-opt.linebreak = true          -- wrap on word boundary
-opt.showmode = false          -- remove the mode bellow the line
+opt.showmatch = true
+opt.foldmethod = 'marker'
+opt.splitright = true
+opt.splitbelow = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.linebreak = true
+opt.showmode = false
 opt.wrap = false
 opt.scrolloff = 8
 opt.cursorline = true
@@ -41,18 +29,15 @@ opt.timeout = false
 opt.hlsearch = false
 opt.ignorecase = true
 
------------------------------------------------------------
--- Memory, CPU
------------------------------------------------------------
-opt.hidden = true         -- enable background buffers
-opt.history = 100         -- remember n lines in history
-opt.lazyredraw = true     -- faster scrolling
-opt.synmaxcol = 240       -- max column for syntax highlight
------------------------------------------------------------
--- Colorscheme
------------------------------------------------------------
-opt.termguicolors = true      -- enable 24-bit RGB colors
-vim.o.background = "dark"     -- or "light" for light mode
+-- optimazations
+opt.hidden = true
+opt.history = 100
+opt.lazyredraw = true
+opt.synmaxcol = 240
+
+-- colorscheme
+opt.termguicolors = true
+vim.o.background = "dark"
 
 local c = require('vscode.colors').get_colors()
 require('vscode').setup({
@@ -71,17 +56,13 @@ require('vscode').setup({
 })
 require('vscode').load()
 
------------------------------------------------------------
--- Tabs, indent
------------------------------------------------------------
-opt.expandtab = true      -- use spaces instead of tabs
-opt.shiftwidth = 4        -- shift 4 spaces when tab
-opt.tabstop = 4           -- 1 tab == 4 spaces
-opt.smartindent = true    -- autoindent new lines
+-- tabs, indent
+opt.expandtab = true
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.smartindent = true
 
------------------------------------------------------------
--- Vim commands
------------------------------------------------------------
+-- vim commands
 
 -- don't auto commenting new lines
 cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
@@ -112,15 +93,11 @@ exec([[
   augroup end
 ]], false)
 
------------------------------------------------------------
--- Autocompletion
------------------------------------------------------------
+-- autocompletion
 -- insert mode completion options
 opt.completeopt = 'menuone,noselect'
 
------------------------------------------------------------
--- Startup
------------------------------------------------------------
+-- startup
 -- disable builtins plugins
 local disabled_built_ins = {
     "netrw",

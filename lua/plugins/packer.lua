@@ -1,11 +1,3 @@
------------------------------------------------------------
--- Plugin manager configuration file
------------------------------------------------------------
-
--- Plugin manager: packer.nvim
--- https://github.com/wbthomason/packer.nvim
-
-
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -49,7 +41,6 @@ return packer.startup(function(use)
     end
   })
 
-  use "ellisonleao/gruvbox.nvim"
   use 'Mofiqul/vscode.nvim'
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
