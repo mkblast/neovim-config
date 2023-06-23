@@ -44,49 +44,38 @@ map('n', '<S-TAB>', ':bprevious<CR>', default_opts)
 map({ "t", "n" }, "<a-o>", "<C-\\><C-n>")
 
 -- trouble.nvim
-map("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
-  default_opts
-)
-map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  default_opts
-)
-map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
-  default_opts
-)
-map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
-  default_opts
-)
-map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
-  default_opts
-)
-map("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-  default_opts
-)
+map("n", "<leader>xx", "<cmd>TroubleToggle<cr>", default_opts)
+map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", default_opts)
+map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", default_opts)
+map("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", default_opts)
+map("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", default_opts)
+map("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", default_opts)
+
+-- neogit
+map("n", "<leader>ng", "<cmd>Neogit<CR>", default_opts)
 
 -- movment remaps
-map("v", "J", ":m '>+1<CR>gv=gv",default_opts)
-map("v", "K", ":m '<-2<CR>gv=gv",default_opts)
+map("v", "J", ":m '>+1<CR>gv=gv", default_opts)
+map("v", "K", ":m '<-2<CR>gv=gv", default_opts)
 
-map("n", "J", "mzJ`z",default_opts)
-map("n", "<C-d>", "<C-d>zz",default_opts)
-map("n", "<C-u>", "<C-u>zz",default_opts)
-map("n", "n", "nzzzv",default_opts)
-map("n", "N", "Nzzzv",default_opts)
+map("n", "J", "mzJ`z", default_opts)
+map("n", "<C-d>", "<C-d>zz", default_opts)
+map("n", "<C-u>", "<C-u>zz", default_opts)
+map("n", "n", "nzzzv", default_opts)
+map("n", "N", "Nzzzv", default_opts)
 
 
 -- clipboard remaps
-map("x", "<leader>P", [["_dP]],default_opts)
-map({ "n", "v" }, "<leader>p", [["+p]],default_opts)
-map({ "n", "v" }, "<leader>y", [["+y]],default_opts)
-map("n", "<leader>Y", [["+Y]],default_opts)
-
-
-map({ "n", "v" }, "<leader>d", [["_d]],default_opts)
+map("x", "<leader>P", [["_dP]], default_opts)
+map({ "n", "v" }, "<leader>p", [["+p]], default_opts)
+map({ "n", "v" }, "<leader>y", [["+y]], default_opts)
+map("n", "<leader>Y", [["+Y]], default_opts)
+map({ "n", "v" }, "<leader>d", [["_d]], default_opts)
 
 -- nvim-tree
-map('n', '<C-n>', ':NvimTreeToggle<CR>', default_opts)       -- open/close
-map('n', '<leader>R', ':NvimTreeRefresh<CR>', default_opts)  -- refresh
-map('n', '<leader>n', ':NvimTreeFindFile<CR>', default_opts) -- search file
+map('n', '<C-n>', ':NvimTreeToggle<CR>', default_opts)        -- open/close
+map('n', '<leader>R', ':NvimTreeRefresh<CR>', default_opts)   -- refresh
+map('n', '<leader>ff', ':NvimTreeFindFile<CR>', default_opts) -- search file
 
 -- Vista tag-viewer
 map('n', '<C-m>', ':Vista!!<CR>', default_opts) -- open/close
