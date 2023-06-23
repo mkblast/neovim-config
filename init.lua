@@ -13,9 +13,9 @@
 -----------------------------------------------------------
 -- Import Lua modules
 -----------------------------------------------------------
+require('plugins/packer')                               -- plugin manager
 require('settings')                                     -- settings
 require('keymaps')                                      -- keymaps
-require('plugins/packer')                               -- plugin manager
 require('plugins/vista')                                -- tag viewer
 require('plugins/lualine')                              -- statue line
 require('plugins/telescope')                            -- fuzzy finder
