@@ -1,5 +1,6 @@
 return {
   'Mofiqul/vscode.nvim',
+
   config = function()
     vim.o.background = "dark"
 
@@ -20,4 +21,5 @@ return {
     })
     require('vscode').load()
   end
+
 }

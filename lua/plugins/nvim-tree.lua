@@ -2,9 +2,9 @@ return {
   "nvim-tree/nvim-tree.lua",
   version = "*",
   keys = {
-    { '<C-n>',      '<cmd>NvimTreeToggle<CR>',   { noremap = true, silent = true } },
-    { '<leader>R',  '<cmd>NvimTreeRefresh<CR>',  { noremap = true, silent = true } },
-    { '<leader>ff', '<cmd>NvimTreeFindFile<CR>', { noremap = true, silent = true } },
+    { mode = "n", '<C-n>',      '<cmd>NvimTreeToggle<CR>',   { noremap = true, silent = true } },
+    { mode = "n", '<leader>R',  '<cmd>NvimTreeRefresh<CR>',  { noremap = true, silent = true } },
+    { mode = "n", '<leader>ff', '<cmd>NvimTreeFindFile<CR>', { noremap = true, silent = true } },
   },
 
   dependencies = {
