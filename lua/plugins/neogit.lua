@@ -2,6 +2,6 @@ return {
   'TimUntersberger/neogit',
   dependencies = 'nvim-lua/plenary.nvim',
   keys = {
-    {"<leader>ng", "<cmd>Neogit<CR>"}
+    {"<leader>ng", "<cmd>Neogit<CR>", { noremap = true, silent = true }}
   },
 }
