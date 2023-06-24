@@ -28,33 +28,13 @@ opt.signcolumn= 'yes'
 opt.timeout = false
 opt.hlsearch = false
 opt.ignorecase = true
+opt.termguicolors = true
 
 -- optimazations
 opt.hidden = true
 opt.history = 100
 opt.lazyredraw = true
 opt.synmaxcol = 240
-
--- colorscheme
-opt.termguicolors = true
-vim.o.background = "dark"
-
-local c = require('vscode.colors').get_colors()
-require('vscode').setup({
-    -- Alternatively set style in setup
-    -- style = 'light'
-
-    -- Enable transparent background
-    transparent = true,
-
-    -- Enable italic comment
-    italic_comments = true,
-
-    -- Disable nvim-tree background color
-    disable_nvimtree_bg = true,
-
-})
-require('vscode').load()
 
 -- tabs, indent
 opt.expandtab = true

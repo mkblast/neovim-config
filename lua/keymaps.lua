@@ -72,10 +72,5 @@ map({ "n", "v" }, "<leader>y", [["+y]], default_opts)
 map("n", "<leader>Y", [["+Y]], default_opts)
 map({ "n", "v" }, "<leader>d", [["_d]], default_opts)
 
--- nvim-tree
-map('n', '<C-n>', ':NvimTreeToggle<CR>', default_opts)        -- open/close
-map('n', '<leader>R', ':NvimTreeRefresh<CR>', default_opts)   -- refresh
-map('n', '<leader>ff', ':NvimTreeFindFile<CR>', default_opts) -- search file
-
 -- Vista tag-viewer
 map('n', '<C-m>', ':Vista!!<CR>', default_opts) -- open/close

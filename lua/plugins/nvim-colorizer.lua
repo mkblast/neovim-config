@@ -1,6 +1,11 @@
-require 'colorizer'.setup {
-  filetypes = {
-    '*';
-    '!rust';
-  }
+return {
+  'norcalli/nvim-colorizer.lua',
+  config = function()
+    require 'colorizer'.setup {
+      filetypes = {
+        '*',
+        '!rust',
+      }
+    }
+  end
 }

@@ -9,20 +9,22 @@
 
 
 --]]
+
 -- imports
-require('plugins/packer')
 require('settings')
 require('keymaps')
-require('plugins/vista')
-require('plugins/lualine')
-require('plugins/telescope')
-require('plugins/nvim-treesitter')
-require('plugins/nvim-colorizer')
-require('plugins/indent-blankline')
-require('plugins/nvim-ts-autotag')
-require('plugins/nvim-tree')
-require('plugins/project')
-require('plugins/nvim-lastplace')
-require('plugins/nvim-scrollbar')
-require('plugins/toggleterm')
-require('plugins/nvim-lspconfig')
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup("plugins")
