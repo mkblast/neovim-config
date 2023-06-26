@@ -8,6 +8,9 @@ local opt = vim.opt
 g.mapleader = ' '
 opt.mouse = 'a'
 opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.config/.nvim/undodir"
+opt.undofile = true
 
 -- ui
 opt.number = true
