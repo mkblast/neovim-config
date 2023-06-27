@@ -13,10 +13,13 @@ return {
     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
     -- Autocompletion
-    { 'hrsh7th/nvim-cmp' },     -- Required
-    { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-    { 'L3MON4D3/LuaSnip' },     -- Required
-    { 'windwp/nvim-autopairs'},
+    { 'hrsh7th/nvim-cmp' },      -- Required
+    { 'hrsh7th/cmp-path' },      -- Required
+    { 'hrsh7th/cmp-buffer' },    -- Required
+    { 'hrsh7th/cmp-nvim-lsp' },  -- Required
+    { 'hrsh7th/cmp-cmdline' },  -- Required
+    { 'L3MON4D3/LuaSnip' },      -- Required
+    { 'windwp/nvim-autopairs' }, -- Required
   },
 
   config = function()
@@ -125,6 +128,28 @@ return {
 
       },
 
+    })
+
+    cmp.setup.cmdline('/', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'buffer' }
+      }
+    })
+
+    -- `:` cmdline setup.
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        {
+          name = 'cmdline',
+          option = {
+            ignore_cmds = { 'Man', '!' }
+          }
+        }
+      })
     })
   end
 
