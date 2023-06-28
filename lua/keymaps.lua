@@ -6,9 +6,6 @@ local default_opts = { noremap = true, silent = true }
 map('n', 'gh', 'v0', default_opts)
 map('n', 'gl', 'v$', default_opts)
 
--- clear search highlighting
-map('n', '<leader>h', ':nohl<CR>', default_opts)
-
 -- don't use arrow keys
 map('', '<up>', '<nop>', default_opts)
 map('', '<down>', '<nop>', default_opts)
