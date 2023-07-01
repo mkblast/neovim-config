@@ -9,7 +9,6 @@ return {
         'SignColumn', 'CursorLineNr', 'EndOfBuffer',
       },
       extra_groups = {
-        "ScrollbarHandle",
         "NormalFloat",
         "NvimTreeNormal",
         "NvimTreeNormalNC",
