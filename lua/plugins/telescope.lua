@@ -19,6 +19,11 @@ return {
 
   config = function()
     require('telescope').setup {
+      defaults = {
+        file_ignore_patterns = {
+          "node_modules", "build", "dist", "yarn.lock", "target"
+        }
+      },
       extensions = {
         fzf = {
           fuzzy = true,                   -- false will only do exact matching

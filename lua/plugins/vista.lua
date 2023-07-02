@@ -1,7 +1,7 @@
 return {
   'liuchengxu/vista.vim',
   keys = {
-    { '<C-m>', ':Vista!!<CR>', { noremap = true, silent = true } }
+    { '<leader><C-m>', ':Vista!!<CR>', { noremap = true, silent = true } }
   },
   config = function()
     -- aliases

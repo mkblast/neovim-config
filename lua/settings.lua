@@ -13,7 +13,6 @@ opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
 opt.undofile = true
 
 opt.conceallevel = 3
--- opt.concealcursor = "n"
 
 -- ui
 opt.number = true

@@ -32,11 +32,7 @@ return {
             engine = "nvim-cmp"
           }
         },
-        ["core.presenter"] = {
-          config = {
-            zen_mode = "zen-mode"
-          }
-        },
+        ["core.summary"] = {},
       },
     }
   end,
