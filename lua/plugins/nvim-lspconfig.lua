@@ -11,6 +11,8 @@ return {
       end,
     },
     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+    { "jose-elias-alvarez/null-ls.nvim" },
+    { "jay-babu/mason-null-ls.nvim" },
 
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },      -- Required
@@ -60,15 +62,6 @@ return {
     -- (Optional) Configure lua language server for neovim
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
-
-    local has_words_before = function()
-      unpack = unpack or table.unpack
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
-
-    local luasnip = require("luasnip")
-
     lsp.set_sign_icons({
       error = '✘',
       warn = '▲',
@@ -78,9 +71,56 @@ return {
 
     lsp.setup()
 
+    require("mason-null-ls").setup({
+      ensure_installed = {
+        -- Opt to list sources here, when available in mason.
+      },
+      automatic_installation = false,
+      handlers = {},
+    })
+    require("null-ls").setup({
+      sources = {
+        -- Anything not supported by mason.
+      }
+    })
+
     -- You need to setup `cmp` after lsp-zero
     local cmp = require('cmp')
     local cmp_action = require('lsp-zero').cmp_action()
+
+    local has_words_before = function()
+      unpack = unpack or table.unpack
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    end
+
+    local luasnip = require("luasnip")
+
+    vim.api.nvim_create_autocmd('CursorMovedI', {
+      pattern = '*',
+      callback = function(ev)
+        if not luasnip.session
+            or not luasnip.session.current_nodes[ev.buf]
+            or luasnip.session.jump_active
+        then
+          return
+        end
+
+        local current_node = luasnip.session.current_nodes[ev.buf]
+        local current_start, current_end = current_node:get_buf_position()
+        current_start[1] = current_start[1] + 1 -- (1, 0) indexed
+        current_end[1] = current_end[1] + 1     -- (1, 0) indexed
+        local cursor = vim.api.nvim_win_get_cursor(0)
+
+        if cursor[1] < current_start[1]
+            or cursor[1] > current_end[1]
+            or cursor[2] < current_start[2]
+            or cursor[2] > current_end[2]
+        then
+          luasnip.unlink_current()
+        end
+      end
+    })
 
     cmp.setup({
       sources = {
@@ -106,6 +146,12 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- they way you will only jump inside the snippet region
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
           else
             fallback()
           end
@@ -114,11 +160,12 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
           else
             fallback()
           end
         end, { "i", "s" }),
-
       },
 
     })
