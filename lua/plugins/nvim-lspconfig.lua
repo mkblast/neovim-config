@@ -11,8 +11,6 @@ return {
       end,
     },
     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-    { "jose-elias-alvarez/null-ls.nvim" },
-    { "jay-babu/mason-null-ls.nvim" },
 
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },      -- Required
@@ -37,6 +35,7 @@ return {
       'html',
       'emmet_ls',
       'cssls',
+      'eslint',
     })
 
     lsp.on_attach(function(client, bufnr)
@@ -70,19 +69,6 @@ return {
     })
 
     lsp.setup()
-
-    require("mason-null-ls").setup({
-      ensure_installed = {
-        -- Opt to list sources here, when available in mason.
-      },
-      automatic_installation = false,
-      handlers = {},
-    })
-    require("null-ls").setup({
-      sources = {
-        -- Anything not supported by mason.
-      }
-    })
 
     -- You need to setup `cmp` after lsp-zero
     local cmp = require('cmp')

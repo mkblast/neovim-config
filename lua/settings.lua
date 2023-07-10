@@ -9,7 +9,7 @@ g.mapleader = ' '
 opt.mouse = 'a'
 opt.swapfile = false
 opt.backup = false
-opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
+opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 opt.undofile = true
 
 opt.conceallevel = 3
@@ -59,13 +59,6 @@ cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
 cmd [[
   autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml,c setlocal shiftwidth=2 tabstop=2
 ]]
-
--- IndentLine
---g.indentLine_setColors = 0  -- set indentLine color
-g.indentLine_char = '|'       -- set indentLine character
-
--- disable IndentLine for markdown files (avoid concealing)
-cmd [[autocmd FileType markdown let g:indentLine_enabled=0]]
 
 -- remove whitespace on save
 cmd [[au BufWritePre * :%s/\s\+$//e]]
