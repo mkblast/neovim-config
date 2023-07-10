@@ -33,7 +33,7 @@ return {
       'lua_ls',
       'pyright',
       'html',
-      'emmet_ls',
+      'emmet_language_server',
       'cssls',
       'eslint',
     })
