@@ -11,5 +11,5 @@ return {
     { mode = "n", '<leader>o', ':lua require("harpoon.mark").add_file()<CR>',        { noremap = true, silent = true } },
   },
 
-  config = {}
+  opts = {}
 }
