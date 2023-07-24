@@ -10,7 +10,8 @@ return {
         'text',
         'terminal',
         'lspinfo',
-        'packer'
+        'packer',
+        'norg',
       },
       buftype_exclude = {
         'terminal',

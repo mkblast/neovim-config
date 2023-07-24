@@ -58,7 +58,7 @@ cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
 
 -- 2 spaces for selected filetypes
 cmd [[
-  autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml,c setlocal shiftwidth=2 tabstop=2
+  autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml,c, norg setlocal shiftwidth=2 tabstop=2
 ]]
 
 -- remove whitespace on save
