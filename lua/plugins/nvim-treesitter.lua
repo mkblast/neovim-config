@@ -7,7 +7,7 @@ return {
 
   config = function()
     require('nvim-treesitter.configs').setup {
-      ensure_installed = { "c", "python", "javascript", "typescript", "html", "css", "lua", "bash", "vim", "go" },
+      ensure_installed = { "c", "python", "javascript", "typescript", "html", "css", "lua", "bash", "vim", "go", "rust" },
       sync_install = true,
 
       highlight = {
