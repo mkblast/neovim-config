@@ -1,22 +1,24 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
+  main = "ibl",
   config = function()
-    require('indent_blankline').setup {
-      show_first_indent_level = false,
-      filetype_exclude = {
-        'help',
-        'git',
-        'markdown',
-        'text',
-        'terminal',
-        'lspinfo',
-        'packer',
-        'norg',
-      },
-      buftype_exclude = {
-        'terminal',
-        'nofile'
-      },
+    require('ibl').setup {
+      exclude = {
+        filetypes = {
+          'help',
+          'git',
+          'markdown',
+          'text',
+          'terminal',
+          'lspinfo',
+          'packer',
+          'norg',
+        },
+        buftypes = {
+          'terminal',
+          'nofile'
+        },
+      }
     }
   end
 }
