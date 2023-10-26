@@ -1,6 +1,6 @@
 return {
   'VonHeikemen/lsp-zero.nvim',
-  branch = 'v2.x',
+  branch = 'v3.x',
   dependencies = {
     -- LSP Support
     { 'neovim/nvim-lspconfig' }, -- Required
@@ -23,25 +23,10 @@ return {
   },
 
   config = function()
-    -- aliases
-    local lsp = require('lsp-zero').preset({})
+    local lsp_zero = require('lsp-zero')
 
-    lsp.ensure_installed({
-      'tsserver',
-      'rust_analyzer',
-      'clangd',
-      'lua_ls',
-      'pyright',
-      'html',
-      'emmet_language_server',
-      'cssls',
-      'eslint',
-    })
-
-    lsp.on_attach(function(client, bufnr)
-      -- lsp.default_keymaps({buffer = bufnr})
+    lsp_zero.on_attach(function(client, bufnr)
       local opts = { buffer = bufnr, remap = false }
-
       vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
       vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
       vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
@@ -58,17 +43,48 @@ return {
       vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
     end)
 
-    -- (Optional) Configure lua language server for neovim
-    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+    -- custom config ex:
+    -- require('lspconfig').lua_ls.setup({})
 
-    lsp.set_sign_icons({
+    lsp_zero.setup_servers({
+      'lua_ls',
+      'rust_analyzer',
+      'clangd',
+      'cssls',
+      'html',
+      'tsserver',
+      'emmet_language_server',
+      'eslint',
+      'jdtls',
+      'pyright'
+    })
+
+    lsp_zero.set_sign_icons({
       error = '✘',
       warn = '▲',
       hint = '⚑',
       info = '»'
     })
 
-    lsp.setup()
+    require('mason').setup({})
+    require('mason-lspconfig').setup({
+      ensure_installed = {
+        'tsserver',
+        'rust_analyzer',
+        'clangd',
+        'lua_ls',
+        'pyright',
+        'html',
+        'emmet_language_server',
+        'cssls',
+        'eslint',
+        'jdtls'
+      },
+
+      handlers = {
+        lsp_zero.default_setup,
+      },
+    })
 
     -- You need to setup `cmp` after lsp-zero
     local cmp = require('cmp')
@@ -114,6 +130,7 @@ return {
         { name = 'nvim_lsp' },
         { name = 'buffer',  keyword_length = 3 },
         { name = 'luasnip', keyword_length = 2 },
+        { name = "neorg" },
       },
 
       mapping = {
