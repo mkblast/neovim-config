@@ -8,7 +8,7 @@ return {
       size = 60,
       open_mapping = [[<a-i>]],
       direction = 'tab',
-      autochdir = false,
+      autochdir = true,
     }
   end
 }
