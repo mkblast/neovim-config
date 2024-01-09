@@ -2,6 +2,10 @@
 local map = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
 
+-- setting the leader key
+local g = vim.g
+g.mapleader = ' '
+
 -- don't use arrow keys
 map('', '<up>', '<nop>', default_opts)
 map('', '<down>', '<nop>', default_opts)

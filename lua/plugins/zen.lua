@@ -1,8 +1,5 @@
 return {
   "folke/zen-mode.nvim",
-  keys = {
-    { mode = "n", '<leader>z', '<cmd>ZenMode<CR>', { noremap = true, silent = true } },
-  },
 
   opts = {
     -- your configuration comes here

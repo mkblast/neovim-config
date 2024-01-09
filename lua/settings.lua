@@ -15,6 +15,7 @@ opt.undofile = true
 opt.conceallevel = 3
 
 -- ui
+opt.autochdir = true
 opt.number = true
 opt.rnu = true
 opt.showmatch = true
