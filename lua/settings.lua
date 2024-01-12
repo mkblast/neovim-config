@@ -5,7 +5,6 @@ local g = vim.g
 local opt = vim.opt
 
 -- general
-g.mapleader = ' '
 opt.mouse = 'a'
 opt.swapfile = false
 opt.backup = false
@@ -63,7 +62,15 @@ cmd [[
 ]]
 
 -- remove whitespace on save
-cmd [[au BufWritePre * :%s/\s\+$//e]]
+Trim = function()
+  -- Save cursor position to later restore
+  local curpos = vim.api.nvim_win_get_cursor(0)
+  -- Search and replace trailing whitespace
+  vim.cmd([[keeppatterns %s/\s\+$//e]])
+  vim.api.nvim_win_set_cursor(0, curpos)
+end
+
+cmd [[au BufWritePre * lua Trim()]]
 
 -- highlight on yank
 exec([[
