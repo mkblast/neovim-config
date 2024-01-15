@@ -10,7 +10,7 @@ return {
   },
 
   keys = {
-    { mode = "n", "<leader>ng", "<cmd>Neogit kind=split<CR>", { noremap = true, silent = true } }
+    { mode = "n", "<leader>ng", "<cmd>Neogit<CR>", { noremap = true, silent = true } }
   },
 
   config = function()
@@ -19,6 +19,7 @@ return {
     neogit.setup {
       integrations = {
         telescope = true,
+        diffview = true,
       },
     }
   end

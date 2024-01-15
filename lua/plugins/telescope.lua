@@ -3,6 +3,7 @@ return {
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope-symbols.nvim'
   },
 
   keys = {
@@ -13,7 +14,7 @@ return {
     { mode = "n", '<leader>fp',       '<cmd>Telescope projects<cr>',    { noremap = true, silent = true } },
     { mode = "n", '<leader>fd',       '<cmd>Telescope diagnostics<cr>', { noremap = true, silent = true } },
     { mode = "n", '<leader>fk',       '<cmd>Telescope keymaps<cr>',     { noremap = true, silent = true } },
-    { mode = "n", '<leader>ts',       '<cmd>Telescope treesitter<cr>',  { noremap = true, silent = true } },
+    { mode = "n", '<leader>fs',       '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>',  { noremap = true, silent = true } },
   },
 
   config = function()

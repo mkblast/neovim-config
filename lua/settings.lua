@@ -14,7 +14,7 @@ opt.undofile = true
 opt.conceallevel = 3
 
 -- ui
-opt.autochdir = true
+opt.autoread = true
 opt.number = true
 opt.rnu = true
 opt.showmatch = true
@@ -71,6 +71,11 @@ Trim = function()
 end
 
 cmd [[au BufWritePre * lua Trim()]]
+
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
 
 -- highlight on yank
 exec([[

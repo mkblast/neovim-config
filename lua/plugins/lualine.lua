@@ -10,7 +10,7 @@ return {
       options = {
         icons_enabled = true,
         theme = 'vscode',
-        transparent = true,
+        transparent = false,
         component_separators = { left = '•', right = '•' },
         section_separators = { left = '', right = '' },
         globalstatus = true,
