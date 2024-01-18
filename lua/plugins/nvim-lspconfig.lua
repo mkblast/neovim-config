@@ -46,19 +46,6 @@ return {
     -- custom config ex:
     -- require('lspconfig').lua_ls.setup({})
 
-    lsp_zero.setup_servers({
-      'lua_ls',
-      'rust_analyzer',
-      'clangd',
-      'cssls',
-      'html',
-      'tsserver',
-      'emmet_language_server',
-      'eslint',
-      'jdtls',
-      'pyright'
-    })
-
     lsp_zero.set_sign_icons({
       error = '✘',
       warn = '▲',
@@ -78,7 +65,6 @@ return {
         'emmet_language_server',
         'cssls',
         'eslint',
-        'jdtls'
       },
 
       handlers = {

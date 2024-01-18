@@ -4,6 +4,9 @@ local exec = vim.api.nvim_exec
 local g = vim.g
 local opt = vim.opt
 
+-- setting the leader key
+g.mapleader = ' '
+
 -- general
 opt.mouse = 'a'
 opt.swapfile = false
