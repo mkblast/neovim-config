@@ -31,7 +31,6 @@ opt.showmode = false
 opt.wrap = false
 opt.scrolloff = 8
 opt.cursorline = true
-opt.cursorcolumn = true
 opt.signcolumn = 'yes'
 opt.timeout = false
 opt.hlsearch = false
