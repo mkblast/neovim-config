@@ -60,7 +60,7 @@ cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
 
 -- 2 spaces for selected filetypes
 cmd [[
-  autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml,ocaml,ml,c,norg setlocal shiftwidth=2 tabstop=2
+  autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml,ocaml,ml,c,norg,javascriptreact setlocal shiftwidth=2 tabstop=2
 ]]
 
 -- remove whitespace on save
@@ -73,6 +73,14 @@ Trim = function()
 end
 
 cmd [[au BufWritePre * lua Trim()]]
+
+-- Jump to last edit position on opening file
+vim.api.nvim_create_autocmd('BufReadPost', {
+  desc = 'Open file at the last position it was edited earlier',
+  group = misc_augroup,
+  pattern = '*',
+  command = 'silent! normal! g`"zv'
+})
 
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
   command = "if mode() != 'c' | checktime | endif",
