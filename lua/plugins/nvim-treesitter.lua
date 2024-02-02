@@ -7,11 +7,16 @@ return {
 
   config = function()
     require('nvim-treesitter.configs').setup {
-      ensure_installed = { "c", "python", "javascript", "typescript", "html", "css", "lua", "bash", "vim", "go", "rust" },
+      ensure_installed = { "c", "python", "javascript", "typescript", "html", "css", "lua", "bash", "vim", "go", "rust", "vimdoc", "query" },
       sync_install = false,
 
       highlight = {
         enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+
+      indent = {
+        enable = true
       },
 
       incremental_selection = {
@@ -50,9 +55,9 @@ return {
           -- and should return the mode ('v', 'V', or '<c-v>') or a table
           -- mapping query_strings to modes.
           selection_modes = {
-            ['@parameter.outer'] = 'v', -- charwise
-            ['@function.outer'] = 'V',  -- linewise
-            ['@class.outer'] = '<c-v>', -- blockwise
+            ['@parameter.outer'] = 'v',             -- charwise
+            ['@function.outer'] = 'V',              -- linewise
+            ['@class.outer'] = '<c-v>',             -- blockwise
           },
           -- If you set this to `true` (default is `false`) then any textobject is
           -- extended to include preceding or succeeding whitespace. Succeeding

@@ -9,6 +9,7 @@ g.mapleader = ' '
 
 -- general
 opt.mouse = 'a'
+opt.mousemodel = "extend"
 opt.swapfile = false
 opt.backup = false
 opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
@@ -17,6 +18,7 @@ opt.undofile = true
 opt.conceallevel = 3
 
 -- ui
+opt.colorcolumn = "80"
 opt.autoread = true
 opt.number = true
 opt.rnu = true
@@ -72,7 +74,11 @@ Trim = function()
   vim.api.nvim_win_set_cursor(0, curpos)
 end
 
-cmd [[au BufWritePre * lua Trim()]]
+vim.api.nvim_create_autocmd('BufWritePre', {
+  desc = 'Remove whitespace on save',
+  pattern = '*',
+  command = 'lua Trim()'
+})
 
 -- Jump to last edit position on opening file
 vim.api.nvim_create_autocmd('BufReadPost', {

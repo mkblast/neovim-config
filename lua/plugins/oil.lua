@@ -10,6 +10,18 @@ return {
         if vim.bo.filetype == 'oil' then
           require("oil").close()
         else
+          require("oil").open()
+        end
+      end,
+      { noremap = true, silent = true }
+    },
+    {
+      mode = "n",
+      '<leader>ff',
+      function()
+        if vim.bo.filetype == 'oil' then
+          require("oil").close()
+        else
           require("oil").open(".")
         end
       end,
