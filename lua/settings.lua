@@ -1,6 +1,5 @@
 -- aliases
 local cmd = vim.cmd
-local exec = vim.api.nvim_exec
 local g = vim.g
 local opt = vim.opt
 
@@ -18,6 +17,7 @@ opt.undofile = true
 opt.conceallevel = 3
 
 -- ui
+opt.title = true
 opt.colorcolumn = "80"
 opt.autoread = true
 opt.number = true
@@ -51,6 +51,7 @@ opt.expandtab = true
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.smartindent = true
+opt.breakindent = true
 
 -- vim commands
 
@@ -58,48 +59,50 @@ opt.smartindent = true
 cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
 
 -- remove line lenght marker for selected filetypes
-cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
+cmd [[autocmd FileType text,markdown,html,xhtml setlocal cc=0]]
 
 -- 2 spaces for selected filetypes
 cmd [[
-  autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml,ocaml,ml,c,norg,javascriptreact setlocal shiftwidth=2 tabstop=2
+  autocmd FileType xml,html,xhtml,css,scss,javascript,yaml,json,norg,javascriptreact setlocal shiftwidth=2 tabstop=2
 ]]
 
 -- remove whitespace on save
 Trim = function()
-  -- Save cursor position to later restore
-  local curpos = vim.api.nvim_win_get_cursor(0)
-  -- Search and replace trailing whitespace
-  vim.cmd([[keeppatterns %s/\s\+$//e]])
-  vim.api.nvim_win_set_cursor(0, curpos)
+    -- Save cursor position to later restore
+    local curpos = vim.api.nvim_win_get_cursor(0)
+    -- Search and replace trailing whitespace
+    vim.cmd([[keeppatterns %s/\s\+$//e]])
+    vim.api.nvim_win_set_cursor(0, curpos)
 end
 
 vim.api.nvim_create_autocmd('BufWritePre', {
-  desc = 'Remove whitespace on save',
-  pattern = '*',
-  command = 'lua Trim()'
+    desc = 'Remove whitespace on save',
+    pattern = '*',
+    command = 'lua Trim()'
 })
 
 -- Jump to last edit position on opening file
 vim.api.nvim_create_autocmd('BufReadPost', {
-  desc = 'Open file at the last position it was edited earlier',
-  group = misc_augroup,
-  pattern = '*',
-  command = 'silent! normal! g`"zv'
+    desc = 'Open file at the last position it was edited earlier',
+    group = misc_augroup,
+    pattern = '*',
+    command = 'silent! normal! g`"zv'
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  command = "if mode() != 'c' | checktime | endif",
-  pattern = { "*" },
+    command = "if mode() != 'c' | checktime | endif",
+    pattern = { "*" },
 })
 
 -- highlight on yank
-exec([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
-  augroup end
-]], false)
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
+})
 
 -- autocompletion
 -- insert mode completion options
@@ -108,28 +111,28 @@ opt.completeopt = 'menuone,noselect'
 -- startup
 -- disable builtins plugins
 local disabled_built_ins = {
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
-  "gzip",
-  "zip",
-  "zipPlugin",
-  "tar",
-  "tarPlugin",
-  "getscript",
-  "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "2html_plugin",
-  "logipat",
-  "rrhelper",
-  "spellfile_plugin",
-  "matchit"
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "gzip",
+    "zip",
+    "zipPlugin",
+    "tar",
+    "tarPlugin",
+    "getscript",
+    "getscriptPlugin",
+    "vimball",
+    "vimballPlugin",
+    "2html_plugin",
+    "logipat",
+    "rrhelper",
+    "spellfile_plugin",
+    "matchit"
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-  g["loaded_" .. plugin] = 1
+    g["loaded_" .. plugin] = 1
 end
 
 -- disable nvim intro

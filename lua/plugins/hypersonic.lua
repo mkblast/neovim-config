@@ -4,7 +4,7 @@ return {
     cmd = "Hypersonic",
     config = function()
         require('hypersonic').setup({
-          enable_cmdline = false;
+            enable_cmdline = false,
         })
     end
 }

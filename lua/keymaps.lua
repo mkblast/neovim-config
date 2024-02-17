@@ -22,8 +22,34 @@ map('n', '<leader>bs', ':w<cr>:bdelete<cr>', default_opts)
 map('n', '<TAB>', ':bnext<CR>', default_opts)
 map('n', '<S-TAB>', ':bprevious<CR>', default_opts)
 
--- teminal binding
+-- teminal maps
 map({ "t", "n" }, "<a-o>", "<C-\\><C-n>")
+
+
+-- file manager maps
+map("n",
+    '<C-n>',
+    function()
+        if vim.bo.filetype == 'oil' then
+            require("oil").close()
+        else
+            require("oil").open()
+        end
+    end,
+    default_opts
+)
+
+map("n",
+    '<leader>ff',
+    function()
+        if vim.bo.filetype == 'oil' then
+            require("oil").close()
+        else
+            require("oil").open(".")
+        end
+    end,
+    default_opts
+)
 
 -- movment remaps
 map("v", "J", ":m '>+1<CR>gv=gv", default_opts)

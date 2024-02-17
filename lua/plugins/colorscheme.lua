@@ -1,12 +1,11 @@
 return {
-  "EdenEast/nightfox.nvim",
+    "EdenEast/nightfox.nvim",
 
-  priority = 1000,
+    priority = 1000,
 
-  config = function()
-    vim.o.background = "dark"
+    config = function()
+        vim.o.background = "dark"
 
-    vim.cmd("colorscheme carbonfox")
-  end
-
+        vim.cmd("colorscheme carbonfox")
+    end
 }
