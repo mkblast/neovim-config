@@ -9,12 +9,29 @@ return {
 
     config = function()
         require('nvim-treesitter.configs').setup {
-            ensure_installed = { "c", "python", "javascript", "typescript", "html", "css", "lua", "bash", "vim", "go", "rust", "vimdoc", "query" },
+            ensure_installed = {
+                "c",
+                "cpp",
+                "python",
+                "javascript",
+                "typescript",
+                "jsdoc",
+                "html",
+                "css",
+                "lua",
+                "bash",
+                "vim",
+                "go",
+                "rust",
+                "vimdoc",
+                "query",
+            },
+
             sync_install = false,
 
             highlight = {
                 enable = true,
-                additional_vim_regex_highlighting = false,
+                additional_vim_regex_highlighting = true,
             },
 
             indent = {

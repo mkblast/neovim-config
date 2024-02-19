@@ -4,7 +4,7 @@ return {
     dependencies = {
         -- LSP Support
         { 'neovim/nvim-lspconfig' }, -- Required
-        {                        -- Optional
+        {                            -- Optional
             'williamboman/mason.nvim',
             build = function()
                 pcall(vim.cmd, 'MasonUpdate')
@@ -13,12 +13,12 @@ return {
         { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
         -- Autocompletion
-        { 'hrsh7th/nvim-cmp' },  -- Required
-        { 'hrsh7th/cmp-path' },  -- Required
-        { 'hrsh7th/cmp-buffer' }, -- Required
-        { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-        { 'hrsh7th/cmp-cmdline' }, -- Required
-        { 'L3MON4D3/LuaSnip' },  -- Required
+        { 'hrsh7th/nvim-cmp' },      -- Required
+        { 'hrsh7th/cmp-path' },      -- Required
+        { 'hrsh7th/cmp-buffer' },    -- Required
+        { 'hrsh7th/cmp-nvim-lsp' },  -- Required
+        { 'hrsh7th/cmp-cmdline' },   -- Required
+        { 'L3MON4D3/LuaSnip' },      -- Required
         { 'windwp/nvim-autopairs' }, -- Required
     },
 
@@ -97,7 +97,7 @@ return {
                 local current_node = luasnip.session.current_nodes[ev.buf]
                 local current_start, current_end = current_node:get_buf_position()
                 current_start[1] = current_start[1] + 1 -- (1, 0) indexed
-                current_end[1] = current_end[1] + 1 -- (1, 0) indexed
+                current_end[1] = current_end[1] + 1     -- (1, 0) indexed
                 local cursor = vim.api.nvim_win_get_cursor(0)
 
                 if cursor[1] < current_start[1]
