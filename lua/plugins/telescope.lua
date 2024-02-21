@@ -7,12 +7,13 @@ return {
     },
 
     keys = {
-        { mode = "n", '<leader>fp', '<cmd>Telescope find_files<cr>',  { noremap = true, silent = true } },
-        { mode = "n", '<leader>fg', '<cmd>Telescope live_grep<cr>',   { noremap = true, silent = true } },
-        { mode = "n", '<leader>fh', '<cmd>Telescope help_tags<cr>',   { noremap = true, silent = true } },
-        { mode = "n", '<leader>fb', '<cmd>Telescope buffers<cr>',     { noremap = true, silent = true } },
-        { mode = "n", '<leader>fd', '<cmd>Telescope diagnostics<cr>', { noremap = true, silent = true } },
-        { mode = "n", '<leader>fk', '<cmd>Telescope keymaps<cr>',     { noremap = true, silent = true } },
+        { mode = "n", '<leader>fp', '<cmd>Telescope find_files<cr>',           { noremap = true, silent = true } },
+        { mode = "n", '<leader>fg', '<cmd>Telescope live_grep<cr>',            { noremap = true, silent = true } },
+        { mode = "n", '<leader>fh', '<cmd>Telescope help_tags<cr>',            { noremap = true, silent = true } },
+        { mode = "n", '<leader>fs', '<cmd>Telescope lsp_document_symbols<cr>', { noremap = true, silent = true } },
+        { mode = "n", '<leader>fb', '<cmd>Telescope buffers<cr>',              { noremap = true, silent = true } },
+        { mode = "n", '<leader>fd', '<cmd>Telescope diagnostics<cr>',          { noremap = true, silent = true } },
+        { mode = "n", '<leader>fk', '<cmd>Telescope keymaps<cr>',              { noremap = true, silent = true } },
     },
 
     config = function()
@@ -25,11 +26,10 @@ return {
 
             extensions = {
                 fzf = {
-                    fuzzy = true,                   -- false will only do exact matching
-                    override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true,    -- override the file sorter
-                    case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-                    -- the default case_mode is "smart_case"
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
                 }
             }
         }

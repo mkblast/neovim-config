@@ -67,19 +67,14 @@ cmd [[
   autocmd FileType xml,html,xhtml,css,scss,javascript,yaml,json,norg,javascriptreact setlocal shiftwidth=2 tabstop=2
 ]]
 
--- remove whitespace on save
-Trim = function()
-    -- Save cursor position to later restore
-    local curpos = vim.api.nvim_win_get_cursor(0)
-    -- Search and replace trailing whitespace
-    vim.cmd([[keeppatterns %s/\s\+$//e]])
-    vim.api.nvim_win_set_cursor(0, curpos)
-end
-
 vim.api.nvim_create_autocmd('BufWritePre', {
     desc = 'Remove whitespace on save',
     pattern = '*',
-    command = 'lua Trim()'
+    callback = function()
+        local curpos = vim.api.nvim_win_get_cursor(0)
+        vim.cmd([[keeppatterns %s/\s\+$//e]])
+        vim.api.nvim_win_set_cursor(0, curpos)
+    end
 })
 
 -- Jump to last edit position on opening file
@@ -98,11 +93,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 -- highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
+    group = highlight_group,
+    pattern = '*',
     callback = function()
         vim.highlight.on_yank()
     end,
-    group = highlight_group,
-    pattern = '*',
 })
 
 -- autocompletion
@@ -129,7 +124,8 @@ local disabled_built_ins = {
     "logipat",
     "rrhelper",
     "spellfile_plugin",
-    "matchit"
+    "m tabout in blockcomment stringsatchit",
+    "matchparen",
 }
 
 for _, plugin in pairs(disabled_built_ins) do

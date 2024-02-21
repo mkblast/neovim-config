@@ -25,7 +25,6 @@ map('n', '<S-TAB>', ':bprevious<CR>', default_opts)
 -- teminal maps
 map({ "t", "n" }, "<a-o>", "<C-\\><C-n>")
 
-
 -- file manager maps
 map("n",
     '<C-n>',

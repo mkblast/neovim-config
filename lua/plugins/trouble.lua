@@ -10,7 +10,5 @@ return {
         { mode = "n", "gR",         "<cmd>TroubleToggle lsp_references<cr>",        { noremap = true, silent = true } },
     },
 
-    opts = {
-
-    }
+    opts = {}
 }
