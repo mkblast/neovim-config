@@ -3,12 +3,14 @@ return {
 
     config = function()
         require('illuminate').configure({
-            filetyps_denylist = {
+            filetypes_denylist = {
                 'dirbuf',
                 'dirvish',
                 'fugitive',
                 'NeogitStatus',
+                'oil',
             },
+
             modes_allowlist = {
                 'n',
             },
