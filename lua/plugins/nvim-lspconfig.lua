@@ -46,7 +46,6 @@ return {
             vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
             vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
             vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-            vim.keymap.set({ 'n', 'x' }, 'gC', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
             vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 
             vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
@@ -85,7 +84,6 @@ return {
 
         -- You need to setup `cmp` after lsp-zero
         local cmp = require('cmp')
-        local cmp_action = require('lsp-zero').cmp_action()
         local luasnip = require 'luasnip'
 
         luasnip.config.setup {}
