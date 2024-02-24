@@ -9,6 +9,8 @@ return {
                 'fugitive',
                 'NeogitStatus',
                 'oil',
+                'lazy',
+                'mason'
             },
 
             modes_allowlist = {

@@ -32,12 +32,18 @@ return {
 
         lsp_zero.on_attach(function(client, bufnr)
             local opts = { buffer = bufnr, remap = false }
+
+            vim.keymap.set('n', '<leader>ls', require('telescope.builtin').lsp_document_symbols, opts)
+            vim.keymap.set('n', '<leader>lw', require('telescope.builtin').lsp_dynamic_workspace_symbols, opts)
+            vim.keymap.set('n', '<leader>ld', require('telescope.builtin').diagnostics, opts)
+
+            vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, opts)
+            vim.keymap.set('n', 'gi', require('telescope.builtin').lsp_implementations, opts)
+            vim.keymap.set('n', 'go', require('telescope.builtin').lsp_type_definitions, opts)
+            vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
+
             vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-            vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
             vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-            vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-            vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-            vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
             vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
             vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
             vim.keymap.set({ 'n', 'x' }, 'gC', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
@@ -80,33 +86,9 @@ return {
         -- You need to setup `cmp` after lsp-zero
         local cmp = require('cmp')
         local cmp_action = require('lsp-zero').cmp_action()
-        local luasnip = require("luasnip")
+        local luasnip = require 'luasnip'
 
-        vim.api.nvim_create_autocmd('CursorMovedI', {
-            pattern = '*',
-            callback = function(ev)
-                if not luasnip.session
-                    or not luasnip.session.current_nodes[ev.buf]
-                    or luasnip.session.jump_active
-                then
-                    return
-                end
-
-                local current_node = luasnip.session.current_nodes[ev.buf]
-                local current_start, current_end = current_node:get_buf_position()
-                current_start[1] = current_start[1] + 1 -- (1, 0) indexed
-                current_end[1] = current_end[1] + 1     -- (1, 0) indexed
-                local cursor = vim.api.nvim_win_get_cursor(0)
-
-                if cursor[1] < current_start[1]
-                    or cursor[1] > current_end[1]
-                    or cursor[2] < current_start[2]
-                    or cursor[2] > current_end[2]
-                then
-                    luasnip.unlink_current()
-                end
-            end
-        })
+        luasnip.config.setup {}
 
         cmp.setup({
             sources = {
@@ -117,7 +99,7 @@ return {
                 { name = "neorg" },
             },
 
-            mapping = {
+            mapping = cmp.mapping.preset.insert {
                 -- `Enter` key to confirm completion
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 ['<C-e>'] = cmp.mapping.abort(),
@@ -126,8 +108,16 @@ return {
                 ['<C-Space>'] = cmp.mapping.complete(),
 
                 -- Navigate between snippet placeholder
-                ['<C-n>'] = cmp_action.luasnip_jump_forward(),
-                ['<C-p>'] = cmp_action.luasnip_jump_backward(),
+                ['<C-n>'] = cmp.mapping(function()
+                    if luasnip.expand_or_locally_jumpable() then
+                        luasnip.expand_or_jump()
+                    end
+                end, { 'i', 's' }),
+                ['<C-p>'] = cmp.mapping(function()
+                    if luasnip.locally_jumpable(-1) then
+                        luasnip.jump(-1)
+                    end
+                end, { 'i', 's' }),
 
                 ['<C-j>'] = cmp.mapping(function()
                     if cmp.visible() then

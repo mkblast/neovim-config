@@ -8,6 +8,10 @@ map('', '<down>', '<nop>', default_opts)
 map('', '<left>', '<nop>', default_opts)
 map('', '<right>', '<nop>', default_opts)
 
+-- some good insert mode mappings
+map("i", "<C-h>", "<LEFT>", default_opts)
+map("i", "<C-l>", "<RIGHt>", default_opts)
+
 -- windows control
 map('n', '<leader>ws', ':split<CR>', default_opts)
 map('n', '<leader>wv', ':vsplit<CR>', default_opts)
@@ -22,8 +26,11 @@ map('n', '<leader>bs', ':w<cr>:bdelete<cr>', default_opts)
 map('n', '<TAB>', ':bnext<CR>', default_opts)
 map('n', '<S-TAB>', ':bprevious<CR>', default_opts)
 
+-- hide highlight search
+map('n', '<Esc>', '<cmd>nohlsearch<CR>', default_opts)
+
 -- teminal maps
-map({ "t", "n" }, "<a-o>", "<C-\\><C-n>")
+map("t", "<Esc><Esc>", "<C-\\><C-n>", default_opts)
 
 -- file manager maps
 map("n",
@@ -61,7 +68,7 @@ map("n", "n", "nzzzv", default_opts)
 map("n", "N", "Nzzzv", default_opts)
 
 -- find and replace
-map("n", "<C-s>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map("n", "<C-s>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], default_opts)
 
 -- clipboard remaps
 map("x", "<leader>P", [["_dP]], default_opts)

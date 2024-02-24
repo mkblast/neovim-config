@@ -14,6 +14,7 @@ return {
                     'packer',
                     'norg',
                 },
+
                 buftypes = {
                     'terminal',
                     'nofile'

@@ -36,9 +36,10 @@ opt.scrolloff = 8
 opt.cursorline = true
 opt.signcolumn = 'yes'
 opt.timeout = false
-opt.hlsearch = false
+opt.hlsearch = true
 opt.ignorecase = true
 opt.termguicolors = true
+opt.inccommand = 'split'
 opt.fillchars = { eob = " " }
 
 -- optimazations
