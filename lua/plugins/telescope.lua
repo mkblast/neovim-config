@@ -8,12 +8,13 @@ return {
     },
 
     keys = {
-        { mode = "n", '<leader>fp', '<cmd>Telescope find_files<cr>',           { noremap = true, silent = true } },
-        { mode = "n", '<leader>f/', '<cmd>Telescope live_grep<cr>',            { noremap = true, silent = true } },
-        { mode = "n", '<leader>fh', '<cmd>Telescope help_tags<cr>',            { noremap = true, silent = true } },
-        { mode = "n", '<leader>fb', '<cmd>Telescope buffers<cr>',              { noremap = true, silent = true } },
-        { mode = "n", '<leader>fk', '<cmd>Telescope keymaps<cr>',              { noremap = true, silent = true } },
-        { mode = "n", '<leader>fr', '<cmd>Telescope resume<cr>',              { noremap = true, silent = true } },
+        { mode = "n", '<leader>fp', '<cmd>Telescope find_files<cr>', { noremap = true, silent = true } },
+        { mode = "n", '<leader>fh', '<cmd>Telescope help_tags<cr>',  { noremap = true, silent = true } },
+        { mode = "n", '<leader>fb', '<cmd>Telescope buffers<cr>',    { noremap = true, silent = true } },
+        { mode = "n", '<leader>fk', '<cmd>Telescope keymaps<cr>',    { noremap = true, silent = true } },
+        { mode = "n", '<leader>fr', '<cmd>Telescope resume<cr>',     { noremap = true, silent = true } },
+
+        { mode = "n", '<leader>/',  '<cmd>Telescope live_grep<cr>',  { noremap = true, silent = true } },
     },
 
     config = function()
