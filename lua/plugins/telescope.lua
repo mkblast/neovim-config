@@ -8,13 +8,13 @@ return {
     },
 
     keys = {
-        { mode = "n", '<leader>fp', '<cmd>Telescope find_files<cr>', { noremap = true, silent = true } },
-        { mode = "n", '<leader>fh', '<cmd>Telescope help_tags<cr>',  { noremap = true, silent = true } },
-        { mode = "n", '<leader>fb', '<cmd>Telescope buffers<cr>',    { noremap = true, silent = true } },
-        { mode = "n", '<leader>fk', '<cmd>Telescope keymaps<cr>',    { noremap = true, silent = true } },
-        { mode = "n", '<leader>fr', '<cmd>Telescope resume<cr>',     { noremap = true, silent = true } },
+        { mode = "n", '<leader>fp', require('telescope.builtin').find_files, { noremap = true, silent = true } },
+        { mode = "n", '<leader>fh', require('telescope.builtin').help_tags,  { noremap = true, silent = true } },
+        { mode = "n", '<leader>fb', require('telescope.builtin').buffers,    { noremap = true, silent = true } },
+        { mode = "n", '<leader>fk', require('telescope.builtin').keymaps,    { noremap = true, silent = true } },
+        { mode = "n", '<leader>fr', require('telescope.builtin').resume,     { noremap = true, silent = true } },
 
-        { mode = "n", '<leader>/',  '<cmd>Telescope live_grep<cr>',  { noremap = true, silent = true } },
+        { mode = "n", '<leader>/',  require('telescope.builtin').live_grep,  { noremap = true, silent = true } },
     },
 
     config = function()

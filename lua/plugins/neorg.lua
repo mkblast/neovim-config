@@ -5,8 +5,8 @@ return {
     config = function()
         require("neorg").setup {
             load = {
-                ["core.defaults"] = {},  -- Loads default behaviour
-                ["core.concealer"] = {}, -- Adds pretty icons to your documents
+                ["core.defaults"] = {},
+                ["core.concealer"] = {},
                 ["core.summary"] = {},
                 ["core.keybinds"] = {
                     config = {
@@ -18,7 +18,7 @@ return {
                         engine = "nvim-cmp",
                     }
                 },
-                ["core.dirman"] = { -- Manages Neorg workspaces
+                ["core.dirman"] = {
                     config = {
                         default_workspace = "notes",
                         workspaces = {

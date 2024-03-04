@@ -15,7 +15,6 @@ opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 opt.undofile = true
 
 opt.conceallevel = 3
-opt.concealcursor = "n"
 
 -- ui
 opt.title = true
@@ -37,7 +36,6 @@ opt.cursorline = true
 opt.signcolumn = 'yes'
 opt.timeout = false
 opt.hlsearch = true
-opt.ignorecase = true
 opt.termguicolors = true
 opt.inccommand = 'split'
 opt.fillchars = { eob = " " }
@@ -125,7 +123,6 @@ local disabled_built_ins = {
     "logipat",
     "rrhelper",
     "spellfile_plugin",
-    "m tabout in blockcomment stringsatchit",
     "matchparen",
 }
 

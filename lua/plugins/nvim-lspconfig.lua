@@ -42,15 +42,16 @@ return {
             vim.keymap.set('n', 'go', require('telescope.builtin').lsp_type_definitions, opts)
             vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
 
-            vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-            vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-            vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-            vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-            vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+            vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
+            vim.keymap.set('n', 'gn', vim.lsp.buf.rename, opts)
+            vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, opts)
+            vim.keymap.set({ 'n', 'x' }, 'gC', vim.lsp.buf.format, opts)
 
-            vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-            vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-            vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+            vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
+            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+            vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
         end)
 
         -- custom config ex:

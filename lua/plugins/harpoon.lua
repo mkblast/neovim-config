@@ -1,6 +1,8 @@
 return {
     "ThePrimeagen/harpoon",
+
     dependencies = { 'nvim-lua/plenary.nvim' },
+
     keys = {
         { mode = "n", '<C-h>',     ':lua require("harpoon.ui").nav_file(1)<CR>',         { noremap = true, silent = true } },
         { mode = "n", '<C-j>',     ':lua require("harpoon.ui").nav_file(2)<CR>',         { noremap = true, silent = true } },

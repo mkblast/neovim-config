@@ -3,6 +3,7 @@ return {
     main = "ibl",
     config = function()
         require('ibl').setup {
+
             exclude = {
                 filetypes = {
                     'help',

@@ -68,7 +68,7 @@ map("n", "n", "nzzzv", default_opts)
 map("n", "N", "Nzzzv", default_opts)
 
 -- find and replace
-map("n", "<C-s>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], default_opts)
+map("n", "<C-s>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left><C-f>]], default_opts)
 
 -- clipboard remaps
 map("x", "<leader>P", [["_dP]], default_opts)
