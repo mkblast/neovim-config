@@ -76,6 +76,7 @@ return {
                 'emmet_language_server',
                 'cssls',
                 'eslint',
+                'gopls',
             },
 
             handlers = {

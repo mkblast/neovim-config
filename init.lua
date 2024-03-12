@@ -8,6 +8,7 @@
   ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
 
 --]]
+
 require('settings')
 require('keymaps')
 
