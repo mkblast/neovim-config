@@ -24,7 +24,9 @@ return {
             "L3MON4D3/LuaSnip",
             version = "v2.*",
             build = "make install_jsregexp"
-        }
+        },
+
+        { 'folke/neodev.nvim', opts = {} },
     },
 
     config = function()
@@ -41,7 +43,6 @@ return {
             vim.keymap.set('n', 'gi', require('telescope.builtin').lsp_implementations, opts)
             vim.keymap.set('n', 'go', require('telescope.builtin').lsp_type_definitions, opts)
             vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
-
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
             vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
@@ -143,6 +144,8 @@ return {
                     require('luasnip').lsp_expand(args.body)
                 end,
             },
+
+            completion = { completeopt = 'menu,menuone,noinsert' },
 
         })
 

@@ -1,11 +1,15 @@
 return {
-    "EdenEast/nightfox.nvim",
+    "ellisonleao/gruvbox.nvim",
 
     priority = 1000,
 
     init = function()
         vim.o.background = "dark"
 
-        vim.cmd("colorscheme carbonfox")
+        require("gruvbox").setup({
+            contrast = "hard",
+        })
+
+        vim.cmd("colorscheme gruvbox")
     end
 }

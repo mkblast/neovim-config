@@ -53,6 +53,11 @@ opt.tabstop = 4
 opt.smartindent = true
 opt.breakindent = true
 
+-- adding hyprlang filetype
+vim.filetype.add({
+  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
+
 -- vim commands
 
 -- don't auto commenting new lines
