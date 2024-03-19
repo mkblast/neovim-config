@@ -38,7 +38,6 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'buffer',  keyword_length = 3 },
                 { name = 'luasnip', keyword_length = 2 },
-                { name = "neorg" },
             },
 
             mapping = cmp.mapping.preset.insert {

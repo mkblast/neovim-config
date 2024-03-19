@@ -7,7 +7,6 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
 
         {
-
             "nvim-treesitter/nvim-treesitter-context",
 
             opts = {},
@@ -25,6 +24,8 @@ return {
                 "vimdoc",
                 "query",
             },
+
+            ignore_install = { "zig" },
 
             sync_install = false,
 
