@@ -72,7 +72,7 @@ autocmd("FileType", {
 autocmd("FileType", {
     pattern = "text,markdown,html,xhtml",
     callback = function()
-        vim.opt_local.cc = 2
+        vim.opt_local.cc:append({0})
     end
 })
 
