@@ -90,7 +90,7 @@ return {
             'tsserver',
             'rust_analyzer',
             'clangd',
-            'pyright',
+            'basedpyright',
             'lua_ls',
             'html',
             'emmet_language_server',

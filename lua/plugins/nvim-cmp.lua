@@ -38,6 +38,7 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'buffer',  keyword_length = 3 },
                 { name = 'luasnip', keyword_length = 2 },
+                { name = "neorg" },
             },
 
             mapping = cmp.mapping.preset.insert {
@@ -84,9 +85,6 @@ return {
                     require('luasnip').lsp_expand(args.body)
                 end,
             },
-
-            completion = { completeopt = 'menu,menuone,noinsert' },
-
         })
 
         cmp.setup.cmdline('/', {

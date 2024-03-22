@@ -1,5 +1,5 @@
 -- aliases
-local cmd = vim.cmd
+local autocmd = vim.api.nvim_create_autocmd
 local g = vim.g
 local opt = vim.opt
 
@@ -55,23 +55,37 @@ opt.breakindent = true
 
 -- adding hyprlang filetype
 vim.filetype.add({
-  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+    pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 })
 
 -- vim commands
 
 -- don't auto commenting new lines
-cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
+autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+        vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+    end,
+})
 
 -- remove line lenght marker for selected filetypes
-cmd [[autocmd FileType text,markdown,html,xhtml setlocal cc=0]]
+autocmd("FileType", {
+    pattern = "text,markdown,html,xhtml",
+    callback = function()
+        vim.opt_local.cc = 2
+    end
+})
 
 -- 2 spaces for selected filetypes
-cmd [[
-  autocmd FileType xml,html,xhtml,css,scss,javascript,yaml,json,norg,javascriptreact setlocal shiftwidth=2 tabstop=2
-]]
+autocmd("FileType", {
+    pattern = "xml,html,xhtml,css,scss,javascript,yaml,json,norg,javascriptreact",
+    callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.tabstop = 2
+    end
+})
 
-vim.api.nvim_create_autocmd('BufWritePre', {
+autocmd('BufWritePre', {
     desc = 'Remove whitespace on save',
     pattern = '*',
     callback = function()
@@ -82,21 +96,20 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 -- Jump to last edit position on opening file
-vim.api.nvim_create_autocmd('BufReadPost', {
+autocmd('BufReadPost', {
     desc = 'Open file at the last position it was edited earlier',
-    group = misc_augroup,
     pattern = '*',
     command = 'silent! normal! g`"zv'
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
     command = "if mode() != 'c' | checktime | endif",
     pattern = { "*" },
 })
 
 -- highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+autocmd('TextYankPost', {
     group = highlight_group,
     pattern = '*',
     callback = function()
