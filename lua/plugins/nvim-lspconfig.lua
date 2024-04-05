@@ -15,30 +15,6 @@ return {
         { 'j-hui/fidget.nvim', opts = {} },
 
         { 'folke/neodev.nvim', opts = {} },
-
-        {
-            "RRethy/vim-illuminate",
-
-            config = function()
-                require('illuminate').configure({
-                    filetypes_denylist = {
-                        'dirbuf',
-                        'dirvish',
-                        'fugitive',
-                        'NeogitStatus',
-                        'oil',
-                        'lazy',
-                        'mason'
-                    },
-
-                    modes_allowlist = {
-                        'n',
-                    },
-                })
-            end
-
-        }
-
     },
     config = function()
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -54,6 +30,7 @@ return {
                 vim.keymap.set('n', 'gi', require('telescope.builtin').lsp_implementations, opts)
                 vim.keymap.set('n', 'go', require('telescope.builtin').lsp_type_definitions, opts)
                 vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
+
                 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
                 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
                 vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
@@ -64,6 +41,19 @@ return {
                 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
                 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
                 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+
+                local client = vim.lsp.get_client_by_id(event.data.client_id)
+                if client and client.server_capabilities.documentHighlightProvider then
+                    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                        buffer = event.buf,
+                        callback = vim.lsp.buf.document_highlight,
+                    })
+
+                    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                        buffer = event.buf,
+                        callback = vim.lsp.buf.clear_references,
+                    })
+                end
             end,
         })
 

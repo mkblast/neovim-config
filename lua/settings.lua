@@ -46,6 +46,9 @@ opt.history = 100
 opt.lazyredraw = true
 opt.synmaxcol = 240
 
+-- Decrease update time
+vim.opt.updatetime = 250
+
 -- tabs, indent
 opt.expandtab = true
 opt.shiftwidth = 4
@@ -70,7 +73,7 @@ autocmd("FileType", {
 
 -- remove line lenght marker for selected filetypes
 autocmd("FileType", {
-    pattern = "text,markdown,html,xhtml",
+    pattern = "text,markdown,html,xhtml,norg,oil",
     callback = function()
         vim.opt_local.cc:append({0})
     end
