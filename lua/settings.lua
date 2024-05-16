@@ -75,13 +75,13 @@ autocmd("FileType", {
 autocmd("FileType", {
     pattern = "text,markdown,html,xhtml,norg,oil",
     callback = function()
-        vim.opt_local.cc:append({0})
+        vim.opt_local.cc:append({ 0 })
     end
 })
 
 -- 2 spaces for selected filetypes
 autocmd("FileType", {
-    pattern = "xml,html,xhtml,css,scss,javascript,yaml,json,norg,javascriptreact",
+    pattern = "xml,html,xhtml,css,scss,javascript,yaml,json,norg,javascriptreact,pug",
     callback = function()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.tabstop = 2

@@ -17,7 +17,6 @@ return {
         },
 
         {
-
             'windwp/nvim-autopairs',
 
             event = "InsertEnter",
@@ -43,7 +42,7 @@ return {
 
             mapping = cmp.mapping.preset.insert {
                 -- `Enter` key to confirm completion
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
                 ['<C-e>'] = cmp.mapping.abort(),
 
                 -- Ctrl+Space to trigger completion menu
