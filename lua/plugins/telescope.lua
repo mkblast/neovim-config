@@ -33,6 +33,8 @@ return {
                         ["<C-k>"] = require("telescope.actions").move_selection_previous,
                     }
                 },
+
+                sorting_strategy = "ascending",
             },
 
             extensions = {

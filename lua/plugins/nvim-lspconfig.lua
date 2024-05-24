@@ -39,8 +39,6 @@ return {
                 vim.keymap.set({ 'n', 'x' }, 'gC', vim.lsp.buf.format, opts)
 
                 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
-                vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-                vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
                 if client and client.server_capabilities.documentHighlightProvider then
