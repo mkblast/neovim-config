@@ -8,10 +8,6 @@ map('', '<down>', '<nop>', default_opts)
 map('', '<left>', '<nop>', default_opts)
 map('', '<right>', '<nop>', default_opts)
 
--- some good insert mode mappings
-map("i", "<C-h>", "<LEFT>", default_opts)
-map("i", "<C-l>", "<RIGHt>", default_opts)
-
 -- windows control
 map('n', '<leader>ws', ':split<CR>', default_opts)
 map('n', '<leader>wv', ':vsplit<CR>', default_opts)

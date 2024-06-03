@@ -45,6 +45,7 @@ return {
                 { name = 'buffer',  keyword_length = 3 },
                 { name = 'luasnip', keyword_length = 2 },
                 { name = "neorg" },
+                { name = "lazydev", group_index = 0}
             },
 
             mapping = cmp.mapping.preset.insert {

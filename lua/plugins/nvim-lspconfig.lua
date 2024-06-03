@@ -14,8 +14,18 @@ return {
 
         { 'j-hui/fidget.nvim', opts = {} },
 
-        { 'folke/neodev.nvim', opts = {} },
+        {
+            "folke/lazydev.nvim",
+            dependencies = { "Bilal2453/luvit-meta", lazy = true },
+            ft = "lua",
+            opts = {
+                library = {
+                    "luvit-meta/library"
+                },
+            },
+        },
     },
+
     config = function()
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -37,6 +47,8 @@ return {
                 vim.keymap.set('n', 'gn', vim.lsp.buf.rename, opts)
                 vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, opts)
                 vim.keymap.set({ 'n', 'x' }, 'gC', vim.lsp.buf.format, opts)
+
+                vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
 
                 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
 
