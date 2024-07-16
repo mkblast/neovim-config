@@ -10,21 +10,20 @@ return {
     },
 
     keys = {
-        { mode = "n", '<leader>fp', require('telescope.builtin').find_files,  { noremap = true, silent = true } },
-        { mode = "n", '<leader>fh', require('telescope.builtin').help_tags,   { noremap = true, silent = true } },
-        { mode = "n", '<leader>fb', require('telescope.builtin').buffers,     { noremap = true, silent = true } },
-        { mode = "n", '<leader>fk', require('telescope.builtin').keymaps,     { noremap = true, silent = true } },
-        { mode = "n", '<leader>fr', require('telescope.builtin').resume,      { noremap = true, silent = true } },
-        { mode = "n", '<leader>*',  require('telescope.builtin').grep_string, { noremap = true, silent = true } },
-
-        { mode = "n", '<leader>/',  require('telescope.builtin').live_grep,   { noremap = true, silent = true } },
+        { mode = "n",          '<leader>fp', require('telescope.builtin').find_files,  { noremap = true, silent = true } },
+        { mode = "n",          '<leader>fh', require('telescope.builtin').help_tags,   { noremap = true, silent = true } },
+        { mode = "n",          '<leader>fb', require('telescope.builtin').buffers,     { noremap = true, silent = true } },
+        { mode = "n",          '<leader>fk', require('telescope.builtin').keymaps,     { noremap = true, silent = true } },
+        { mode = "n",          '<leader>fr', require('telescope.builtin').resume,      { noremap = true, silent = true } },
+        { mode = "n",          '<leader>/',  require('telescope.builtin').live_grep,   { noremap = true, silent = true } },
+        { mode = { "n", "v" }, '<leader>*',  require('telescope.builtin').grep_string, { noremap = true, silent = true } },
     },
 
     config = function()
         require('telescope').setup {
             defaults = {
                 file_ignore_patterns = {
-                    "node_modules", "yarn.lock", "target"
+                    "node_modules", "yarn.lock", "target", "dist"
                 },
 
                 mappings = {

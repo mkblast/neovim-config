@@ -1,6 +1,8 @@
 return {
     'hrsh7th/nvim-cmp',
 
+    event = "InsertEnter",
+
     dependencies = {
         { 'hrsh7th/cmp-path' },
 
@@ -44,8 +46,8 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'buffer',  keyword_length = 3 },
                 { name = 'luasnip', keyword_length = 2 },
+                { name = "lazydev", group_index = 0 },
                 { name = "neorg" },
-                { name = "lazydev", group_index = 0}
             },
 
             mapping = cmp.mapping.preset.insert {
@@ -116,8 +118,9 @@ return {
             })
         })
 
-
-        require("nvim-autopairs").setup {}
+        require("nvim-autopairs").setup {
+            map_c_w = true
+        }
 
         local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 

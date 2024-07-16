@@ -6,7 +6,7 @@ return {
             render = 'virtual',
             virtual_symbol_prefix = ' ',
             virtual_symbol_position = 'eow',
-            exclude_filetypes = {"lazy"},
+            exclude_filetypes = { "lazy", "mason" },
             exclude_buftypes = {}
         }
     end

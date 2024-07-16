@@ -5,6 +5,7 @@ local opt = vim.opt
 
 -- setting the leader key
 g.mapleader = ' '
+g.maplocalleader = ','
 
 -- general
 opt.mouse = 'a'
@@ -13,8 +14,6 @@ opt.swapfile = false
 opt.backup = false
 opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 opt.undofile = true
-
-opt.conceallevel = 3
 
 -- ui
 opt.title = true
@@ -106,7 +105,7 @@ autocmd('BufReadPost', {
 })
 
 autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-    command = "if mode() != 'c' | checktime | endif",
+    command = "if mode() != 'c' | silent! checktime | endif",
     pattern = { "*" },
 })
 

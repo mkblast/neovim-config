@@ -1,8 +1,6 @@
 return {
     "folke/trouble.nvim",
 
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-
     keys = {
         { mode = "n", "<leader>xs", "<cmd>Trouble<cr>",                             { noremap = true, silent = true } },
         { mode = "n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",          { noremap = true, silent = true } },
