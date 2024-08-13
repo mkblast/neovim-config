@@ -4,25 +4,25 @@ return {
     main = "ibl",
 
     config = function()
-        require('ibl').setup {
+        require("ibl").setup({
             exclude = {
                 filetypes = {
-                    'help',
-                    'git',
-                    'markdown',
-                    'text',
-                    'terminal',
-                    'lspinfo',
-                    'packer',
-                    'norg',
+                    "help",
+                    "git",
+                    "markdown",
+                    "text",
+                    "terminal",
+                    "lspinfo",
+                    "packer",
+                    "norg",
                 },
 
                 buftypes = {
-                    'terminal',
-                    'nofile'
+                    "terminal",
+                    "nofile"
                 },
             }
-        }
+        })
 
         local hooks = require("ibl.hooks")
         hooks.register(

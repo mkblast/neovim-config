@@ -1,5 +1,5 @@
 return {
-    'NeogitOrg/neogit',
+    "NeogitOrg/neogit",
 
     dependencies = {
         "nvim-lua/plenary.nvim",
@@ -14,11 +14,11 @@ return {
     config = function()
         local neogit = require("neogit")
 
-        neogit.setup {
+        neogit.setup({
             integrations = {
                 telescope = true,
                 diffview = true,
             },
-        }
+        })
     end
 }

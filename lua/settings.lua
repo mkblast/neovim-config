@@ -4,11 +4,11 @@ local g = vim.g
 local opt = vim.opt
 
 -- setting the leader key
-g.mapleader = ' '
-g.maplocalleader = ','
+g.mapleader = " "
+g.maplocalleader = ","
 
 -- general
-opt.mouse = 'a'
+opt.mouse = "a"
 opt.mousemodel = "extend"
 opt.swapfile = false
 opt.backup = false
@@ -22,7 +22,7 @@ opt.autoread = true
 opt.number = true
 opt.rnu = true
 opt.showmatch = true
-opt.foldmethod = 'marker'
+opt.foldmethod = "marker"
 opt.splitright = true
 opt.splitbelow = true
 opt.ignorecase = true
@@ -32,11 +32,11 @@ opt.showmode = false
 opt.wrap = false
 opt.scrolloff = 8
 opt.cursorline = true
-opt.signcolumn = 'yes'
+opt.signcolumn = "yes"
 opt.timeout = false
 opt.hlsearch = true
 opt.termguicolors = true
-opt.inccommand = 'split'
+opt.inccommand = "split"
 opt.fillchars = { eob = " " }
 
 -- optimazations
@@ -55,9 +55,10 @@ opt.tabstop = 4
 opt.smartindent = true
 opt.breakindent = true
 
--- adding hyprlang filetype
 vim.filetype.add({
-    pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+    extension = {
+        ["http"] = "http",
+    },
 })
 
 -- vim commands
@@ -87,9 +88,9 @@ autocmd("FileType", {
     end
 })
 
-autocmd('BufWritePre', {
-    desc = 'Remove whitespace on save',
-    pattern = '*',
+autocmd("BufWritePre", {
+    desc = "Remove whitespace on save",
+    pattern = "*",
     callback = function()
         local curpos = vim.api.nvim_win_get_cursor(0)
         vim.cmd([[keeppatterns %s/\s\+$//e]])
@@ -98,9 +99,9 @@ autocmd('BufWritePre', {
 })
 
 -- Jump to last edit position on opening file
-autocmd('BufReadPost', {
-    desc = 'Open file at the last position it was edited earlier',
-    pattern = '*',
+autocmd("BufReadPost", {
+    desc = "Open file at the last position it was edited earlier",
+    pattern = "*",
     command = 'silent! normal! g`"zv'
 })
 
@@ -110,10 +111,10 @@ autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
 })
 
 -- highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-autocmd('TextYankPost', {
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+autocmd("TextYankPost", {
     group = highlight_group,
-    pattern = '*',
+    pattern = "*",
     callback = function()
         vim.highlight.on_yank()
     end,
@@ -121,7 +122,7 @@ autocmd('TextYankPost', {
 
 -- autocompletion
 -- insert mode completion options
-opt.completeopt = 'menuone,noselect'
+opt.completeopt = "menuone,noselect"
 
 -- startup
 -- disable builtins plugins

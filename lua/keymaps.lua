@@ -3,36 +3,36 @@ local map = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
 
 -- don't use arrow keys
-map('', '<up>', '<nop>', default_opts)
-map('', '<down>', '<nop>', default_opts)
-map('', '<left>', '<nop>', default_opts)
-map('', '<right>', '<nop>', default_opts)
+map("", "<up>", "<nop>", default_opts)
+map("", "<down>", "<nop>", default_opts)
+map("", "<left>", "<nop>", default_opts)
+map("", "<right>", "<nop>", default_opts)
 
 -- windows control
-map('n', '<leader>ws', ':split<CR>', default_opts)
-map('n', '<leader>wv', ':vsplit<CR>', default_opts)
-map('n', '<leader>wf', ':split<CR>', default_opts)
-map('n', '<leader>wc', ':close<CR>', default_opts)
-map('n', '<leader>wo', ':on<CR>', default_opts)
-map('n', '<leader>wh', ':hide<CR>', default_opts)
+map("n", "<leader>ws", ":split<CR>", default_opts)
+map("n", "<leader>wv", ":vsplit<CR>", default_opts)
+map("n", "<leader>wf", ":split<CR>", default_opts)
+map("n", "<leader>wc", ":close<CR>", default_opts)
+map("n", "<leader>wo", ":on<CR>", default_opts)
+map("n", "<leader>wh", ":hide<CR>", default_opts)
 
 -- buffer control
-map('n', '<leader>bd', ':bdelete!<CR>', default_opts)
-map('n', '<leader>bs', ':w<cr>:bdelete<cr>', default_opts)
-map('n', '<TAB>', ':bnext<CR>', default_opts)
-map('n', '<S-TAB>', ':bprevious<CR>', default_opts)
+map("n", "<leader>bd", ":bdelete!<CR>", default_opts)
+map("n", "<leader>bs", ":w<cr>:bdelete<cr>", default_opts)
+map("n", "<TAB>", ":bnext<CR>", default_opts)
+map("n", "<S-TAB>", ":bprevious<CR>", default_opts)
 
 -- hide highlight search
-map('n', '<Esc>', '<cmd>nohlsearch<CR>', default_opts)
+map("n", "<Esc>", "<cmd>nohlsearch<CR>", default_opts)
 
 -- teminal maps
 map("t", "<Esc><Esc>", "<C-\\><C-n>", default_opts)
 
 -- file manager maps
 map("n",
-    '<C-n>',
+    "<C-n>",
     function()
-        if vim.bo.filetype == 'oil' then
+        if vim.bo.filetype == "oil" then
             require("oil").close()
         else
             require("oil").open()
@@ -42,9 +42,9 @@ map("n",
 )
 
 map("n",
-    '<leader>ff',
+    "<leader>ff",
     function()
-        if vim.bo.filetype == 'oil' then
+        if vim.bo.filetype == "oil" then
             require("oil").close()
         else
             require("oil").open(".")
