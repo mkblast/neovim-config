@@ -5,7 +5,6 @@ local opt = vim.opt
 
 -- setting the leader key
 g.mapleader = " "
-g.maplocalleader = ","
 
 -- general
 opt.mouse = "a"
@@ -62,26 +61,25 @@ vim.filetype.add({
 })
 
 -- vim commands
-
--- don't auto commenting new lines
 autocmd("FileType", {
+    desc = "don't auto commenting new lines",
     pattern = "*",
     callback = function()
         vim.opt_local.formatoptions:remove({ "c", "r", "o" })
     end,
 })
 
--- remove line lenght marker for selected filetypes
 autocmd("FileType", {
-    pattern = "text,markdown,html,xhtml,norg,oil",
+    desc = "remove line length marker for selected filetypes",
+    pattern = "text,markdown,html,xhtml,oil",
     callback = function()
         vim.opt_local.cc:append({ 0 })
     end
 })
 
--- 2 spaces for selected filetypes
 autocmd("FileType", {
-    pattern = "xml,html,xhtml,css,scss,javascript,yaml,json,norg,javascriptreact,pug",
+    desc = " 2 spaces for selected filetypes",
+    pattern = "xml,html,xhtml,css,scss,yaml,json,norg,pug",
     callback = function()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.tabstop = 2
@@ -106,13 +104,14 @@ autocmd("BufReadPost", {
 })
 
 autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+    desc = "Reload file",
     command = "if mode() != 'c' | silent! checktime | endif",
     pattern = { "*" },
 })
 
--- highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
+    desc = "Highlight on yank",
     group = highlight_group,
     pattern = "*",
     callback = function()

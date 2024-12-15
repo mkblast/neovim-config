@@ -21,7 +21,7 @@ return {
 
     config = function()
         require("telescope").setup({
-            defaults = {
+            defaults = require('telescope.themes').get_ivy({
                 file_ignore_patterns = {
                     "node_modules", "yarn.lock", "target", "dist"
                 },
@@ -34,7 +34,7 @@ return {
                 },
 
                 sorting_strategy = "ascending",
-            },
+            }),
 
             extensions = {
                 fzf = {
@@ -47,11 +47,10 @@ return {
                 ["ui-select"] = {
                     require("telescope.themes").get_dropdown(),
                 },
-
             }
         })
 
-        require("telescope").load_extension("fzf")
-        require("telescope").load_extension("ui-select")
+        pcall(require("telescope").load_extension, "fzf")
+        pcall(require("telescope").load_extension, "ui-select")
     end
 }

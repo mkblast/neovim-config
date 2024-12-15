@@ -3,6 +3,8 @@ return {
 
     priority = 1000,
 
+    lazy = false,
+
     init = function()
         vim.o.background = "dark"
 

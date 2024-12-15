@@ -8,14 +8,6 @@ map("", "<down>", "<nop>", default_opts)
 map("", "<left>", "<nop>", default_opts)
 map("", "<right>", "<nop>", default_opts)
 
--- windows control
-map("n", "<leader>ws", ":split<CR>", default_opts)
-map("n", "<leader>wv", ":vsplit<CR>", default_opts)
-map("n", "<leader>wf", ":split<CR>", default_opts)
-map("n", "<leader>wc", ":close<CR>", default_opts)
-map("n", "<leader>wo", ":on<CR>", default_opts)
-map("n", "<leader>wh", ":hide<CR>", default_opts)
-
 -- buffer control
 map("n", "<leader>bd", ":bdelete!<CR>", default_opts)
 map("n", "<leader>bs", ":w<cr>:bdelete<cr>", default_opts)
@@ -42,7 +34,7 @@ map("n",
 )
 
 map("n",
-    "<leader>ff",
+    "<leader><C-n>",
     function()
         if vim.bo.filetype == "oil" then
             require("oil").close()

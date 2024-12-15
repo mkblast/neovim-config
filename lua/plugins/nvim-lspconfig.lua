@@ -13,7 +13,10 @@ return {
 
         "WhoIsSethDaniel/mason-tool-installer.nvim",
 
-        { "j-hui/fidget.nvim", opts = {} },
+        {
+            "j-hui/fidget.nvim",
+            opts = {},
+        },
     },
 
     config = function()
@@ -74,17 +77,17 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
         end
 
-        local capabilities = vim.tbl_deep_extend(
-            "force",
-            {},
-            vim.lsp.protocol.make_client_capabilities(),
-            require("cmp_nvim_lsp").default_capabilities()
-        )
+        local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
 
         local servers = {
             -- tsserver = {},
             rust_analyzer = {},
-            clangd = {},
+            clangd = {
+                cmd = {
+                    "clangd",
+                    "--fallback-style=webkit"
+                }
+            },
             basedpyright = {},
             lua_ls = {},
             html = {},
@@ -102,6 +105,8 @@ return {
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
         require("mason-lspconfig").setup({
+            ensure_installed = {},
+            automatic_installation = false,
             handlers = {
                 -- default handler
                 function(server_name)
