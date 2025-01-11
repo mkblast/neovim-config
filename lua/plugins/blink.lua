@@ -1,16 +1,12 @@
 return {
     "saghen/blink.cmp",
+
     lazy = false,
+
     version = 'v0.*',
 
     dependencies = {
         { "rafamadriz/friendly-snippets" },
-
-        {
-            "L3MON4D3/LuaSnip",
-            version = "v2.*",
-            build = "make install_jsregexp"
-        },
 
         {
             "windwp/nvim-ts-autotag",
@@ -30,6 +26,8 @@ return {
 
     opts = {
         keymap = {
+            preset = "none",
+
             ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
             ["<C-e>"] = { "hide" },
             ["<C-o>"] = { "select_and_accept" },
@@ -40,8 +38,8 @@ return {
             ["<C-u>"] = { "scroll_documentation_up", "fallback" },
             ["<C-d>"] = { "scroll_documentation_down", "fallback" },
 
-            ["<C-n>"] = { "snippet_forward", "fallback" },
-            ["<C-p>"] = { "snippet_backward", "fallback" },
+            ["<C-n>"] = { "snippet_forward" },
+            ["<C-p>"] = { "snippet_backward" },
         },
 
         appearance = {
@@ -49,22 +47,11 @@ return {
             nerd_font_variant = "mono"
         },
 
-        snippets = {
-            expand = function(snippet) require("luasnip").lsp_expand(snippet) end,
-            active = function(filter)
-                if filter and filter.direction then
-                    return require("luasnip").jumpable(filter.direction)
-                end
-                return require("luasnip").in_snippet()
-            end,
-            jump = function(direction) require("luasnip").jump(direction) end,
-        },
-
         completion = {
             menu = {
                 draw = {
                     columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
-                }
+                },
             },
             documentation = {
                 auto_show = true,
@@ -74,17 +61,18 @@ return {
         },
 
         sources = {
-            default = { "lsp", "path", "snippets", "luasnip", "buffer", "lazydev" },
-
-            min_keyword_length = 3,
+            default = { "lsp", "path", "snippets", "lazydev", "buffer" },
 
             providers = {
-                lsp = { fallback_for = { "lazydev" } },
-                lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    score_offset = 100,
+                },
             },
         },
 
-        signature = { enabled = false }
+        signature = { enabled = true }
     },
 
     opts_extend = { "sources.default" }

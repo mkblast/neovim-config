@@ -17,6 +17,8 @@ return {
             "j-hui/fidget.nvim",
             opts = {},
         },
+
+        'saghen/blink.cmp',
     },
 
     config = function()
@@ -81,7 +83,6 @@ return {
 
         local servers = {
             -- tsserver = {},
-            rust_analyzer = {},
             clangd = {
                 cmd = {
                     "clangd",
@@ -118,9 +119,9 @@ return {
         })
 
         -- setup custom lsp not in mason.
-        -- local lspconfig = require("lspconfig")
-        -- lspconfig["gdscript"].setup({
-        --     capabilities = capabilities,
-        -- })
+        local lspconfig = require("lspconfig")
+        lspconfig["gdscript"].setup({
+            capabilities = capabilities,
+        })
     end,
 }

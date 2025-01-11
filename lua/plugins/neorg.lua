@@ -35,11 +35,11 @@ return {
                 ["core.concealer"] = {},
                 ["core.summary"] = {},
                 ["core.keybinds"] = {},
-                ["core.completion"] = {
-                    config = {
-                        engine = "nvim-cmp",
-                    }
-                },
+                -- ["core.completion"] = {
+                --     config = {
+                --         engine = "nvim-cmp",
+                --     }
+                -- },
                 ["core.dirman"] = {
                     config = {
                         default_workspace = "notes",
