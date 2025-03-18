@@ -6,8 +6,6 @@ return {
     version = 'v0.*',
 
     dependencies = {
-        { "rafamadriz/friendly-snippets" },
-
         {
             "windwp/nvim-ts-autotag",
             opts = {
@@ -20,7 +18,9 @@ return {
         {
             "windwp/nvim-autopairs",
             event = "InsertEnter",
-            opts = {},
+            opts = {
+                check_ts = true,
+            },
         },
     },
 
@@ -30,7 +30,7 @@ return {
 
             ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
             ["<C-e>"] = { "hide" },
-            ["<C-o>"] = { "select_and_accept" },
+            ["<C-o>"] = { "select_and_accept", "fallback" },
 
             ["<C-j>"] = { "show", "select_next", "fallback" },
             ["<C-k>"] = { "show", "select_prev", "fallback" },
@@ -47,10 +47,25 @@ return {
             nerd_font_variant = "mono"
         },
 
+        cmdline = {
+            keymap = {
+                preset = "none",
+                ["<C-space>"] = { "show", },
+                ["<C-e>"] = { "hide" },
+                ["<C-o>"] = { "select_and_accept" },
+
+                ["<C-j>"] = { "show_and_insert", "select_next", "fallback" },
+                ["<C-k>"] = { "show_and_insert", "select_prev", "fallback" },
+            }
+        },
+
         completion = {
             menu = {
                 draw = {
-                    columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind", gap = 1 } },
+                    columns = {
+                        { "label",     "label_description", gap = 1 },
+                        { "kind_icon", "kind",              gap = 1 },
+                    }
                 },
             },
             documentation = {
@@ -61,8 +76,7 @@ return {
         },
 
         sources = {
-            default = { "lsp", "path", "snippets", "lazydev", "buffer" },
-
+            default = { "lsp", "buffer", "path", "snippets", "lazydev" },
             providers = {
                 lazydev = {
                     name = "LazyDev",

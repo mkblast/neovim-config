@@ -7,12 +7,11 @@ local opt = vim.opt
 g.mapleader = " "
 
 -- general
-opt.mouse = "a"
-opt.mousemodel = "extend"
 opt.swapfile = false
 opt.backup = false
 opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 opt.undofile = true
+opt.confirm = true
 
 -- ui
 opt.title = true
@@ -53,6 +52,12 @@ opt.shiftwidth = 4
 opt.tabstop = 4
 opt.smartindent = true
 opt.breakindent = true
+
+vim.diagnostic.config({ virtual_text = { current_line = true } })
+
+-- Show whitespace.
+vim.opt.list = true
+vim.opt.listchars = { space = '·', trail = '·', tab = '  ↦' }
 
 vim.filetype.add({
     extension = {
@@ -116,6 +121,18 @@ autocmd("TextYankPost", {
     pattern = "*",
     callback = function()
         vim.highlight.on_yank()
+    end,
+})
+
+local oil_local_cwd = vim.api.nvim_create_augroup("OilLocalCwd", { clear = true })
+autocmd("BufEnter", {
+    group = oil_local_cwd,
+    callback = function(o)
+        if o.match:find("^oil://") then
+            vim.cmd("lcd " .. require("oil").get_current_dir())
+        else
+            vim.cmd("lcd " .. vim.fn.getcwd(-1))
+        end
     end,
 })
 

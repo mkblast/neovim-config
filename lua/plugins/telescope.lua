@@ -4,7 +4,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-ui-select.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
 
     keys = {
@@ -19,9 +19,22 @@ return {
 
     config = function()
         require("telescope").setup({
+            pickers = {
+                oldfiles = {
+                    cwd_only = true,
+                    cwd = vim.fn.getcwd(-1),
+                },
+                find_files = {
+                    cwd = vim.fn.getcwd(-1),
+                },
+                live_grep = {
+                    cwd = vim.fn.getcwd(-1),
+                },
+            },
+
             defaults = require('telescope.themes').get_ivy({
                 file_ignore_patterns = {
-                    "node_modules", "yarn.lock", "target", "dist"
+                    "node_modules", "yarn.lock", "target", "dist",
                 },
 
                 mappings = {

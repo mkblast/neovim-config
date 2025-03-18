@@ -11,14 +11,11 @@ return {
         { mode = "n", "<leader>ng", "<cmd>Neogit<CR>", { noremap = true, silent = true } }
     },
 
-    config = function()
-        local neogit = require("neogit")
-
-        neogit.setup({
-            integrations = {
-                telescope = true,
-                diffview = true,
-            },
-        })
-    end
+    opts = {
+        integrations = {
+            telescope = true,
+            diffview = true,
+        },
+        kind = "replace"
+    }
 }

@@ -27,21 +27,21 @@ return {
             callback = function(event)
                 local opts = { buffer = event.buf, remap = false }
 
-                vim.keymap.set("n", "<leader>ls", require("telescope.builtin").lsp_document_symbols, opts)
+                vim.keymap.set("n", "gO", require("telescope.builtin").lsp_document_symbols, opts)
                 vim.keymap.set("n", "<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, opts)
                 vim.keymap.set("n", "<leader>ld", require("telescope.builtin").diagnostics, opts)
 
                 vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, opts)
-                vim.keymap.set("n", "gi", require("telescope.builtin").lsp_implementations, opts)
-                vim.keymap.set("n", "go", require("telescope.builtin").lsp_type_definitions, opts)
-                vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, opts)
+                vim.keymap.set("n", "gri", require("telescope.builtin").lsp_implementations, opts)
+                vim.keymap.set("n", "gro", require("telescope.builtin").lsp_type_definitions, opts)
+                vim.keymap.set("n", "grr", require("telescope.builtin").lsp_references, opts)
 
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
-                vim.keymap.set("n", "gn", vim.lsp.buf.rename, opts)
-                vim.keymap.set("n", "ga", vim.lsp.buf.code_action, opts)
-                vim.keymap.set({ "n", "x" }, "<leader>lf", vim.lsp.buf.format, opts)
+                vim.keymap.set("n", "grs", vim.lsp.buf.signature_help, opts)
+                vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts)
+                vim.keymap.set("n", "gra", vim.lsp.buf.code_action, opts)
+                vim.keymap.set({ "n", "x" }, "grf", vim.lsp.buf.format, opts)
 
                 vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
@@ -82,7 +82,6 @@ return {
         local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
 
         local servers = {
-            -- tsserver = {},
             clangd = {
                 cmd = {
                     "clangd",
@@ -91,11 +90,11 @@ return {
             },
             basedpyright = {},
             lua_ls = {},
-            html = {},
             emmet_language_server = {},
-            cssls = {},
-            eslint = {},
             gopls = {},
+            harper_ls = {
+                filetypes = { "markdown", "typst", "norg" },
+            }
         }
 
         require("mason").setup()

@@ -10,7 +10,5 @@ return {
         { mode = "n", "<leader>kc", function() require("kulala").close() end,     { noremap = true, silent = true } },
     },
 
-    config = function()
-        require("kulala").setup()
-    end
+    opts = {}
 }

@@ -20,6 +20,10 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>", default_opts)
 -- teminal maps
 map("t", "<Esc><Esc>", "<C-\\><C-n>", default_opts)
 
+-- Indent while remaining in visual mode.
+vim.keymap.set('v', '<', '<gv', default_opts)
+vim.keymap.set('v', '>', '>gv', default_opts)
+
 -- file manager maps
 map("n",
     "<C-n>",
