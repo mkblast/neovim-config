@@ -26,26 +26,28 @@ return {
             group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
             callback = function(event)
                 local opts = { buffer = event.buf, remap = false }
+                local fzf = require("fzf-lua")
+                local map = vim.keymap.set
 
-                vim.keymap.set("n", "gO", require("telescope.builtin").lsp_document_symbols, opts)
-                vim.keymap.set("n", "<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, opts)
-                vim.keymap.set("n", "<leader>ld", require("telescope.builtin").diagnostics, opts)
+                map("n", "gO", fzf.lsp_document_symbols, opts)
+                map("n", "<leader>lw", fzf.lsp_live_workspace_symbols, opts)
+                map("n", "<leader>ld", fzf.diagnostics_document, opts)
 
-                vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, opts)
-                vim.keymap.set("n", "gri", require("telescope.builtin").lsp_implementations, opts)
-                vim.keymap.set("n", "gro", require("telescope.builtin").lsp_type_definitions, opts)
-                vim.keymap.set("n", "grr", require("telescope.builtin").lsp_references, opts)
+                map("n", "gd", fzf.lsp_definitions, opts)
+                map("n", "gri", fzf.lsp_implementations, opts)
+                map("n", "gro", fzf.lsp_typedefs, opts)
+                map("n", "grr", fzf.lsp_references, opts)
 
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "grs", vim.lsp.buf.signature_help, opts)
-                vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts)
-                vim.keymap.set("n", "gra", vim.lsp.buf.code_action, opts)
-                vim.keymap.set({ "n", "x" }, "grf", vim.lsp.buf.format, opts)
+                map("n", "K", vim.lsp.buf.hover, opts)
+                map("n", "gD", vim.lsp.buf.declaration, opts)
+                map("n", "grs", vim.lsp.buf.signature_help, opts)
+                map("n", "grn", vim.lsp.buf.rename, opts)
+                map("n", "gra", vim.lsp.buf.code_action, opts)
+                map({ "n", "x" }, "grf", vim.lsp.buf.format, opts)
 
-                vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+                map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
-                vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+                map("n", "gl", vim.diagnostic.open_float, opts)
 
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
                 if client and client.server_capabilities.documentHighlightProvider then
@@ -73,11 +75,17 @@ return {
             end,
         })
 
-        local signs = { Error = "", Warn = " ", Hint = "", Info = "", Other = "" }
-        for type, icon in pairs(signs) do
-            local hl = "DiagnosticSign" .. type
-            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-        end
+        vim.diagnostic.config({
+            virtual_text = { current_line = true },
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = '󰅚',
+                    [vim.diagnostic.severity.WARN] = '󰀪',
+                    [vim.diagnostic.severity.INFO] = '󰋽',
+                    [vim.diagnostic.severity.HINT] = '󰌶',
+                },
+            },
+        })
 
         local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
 
@@ -88,10 +96,10 @@ return {
                     "--fallback-style=webkit"
                 }
             },
-            basedpyright = {},
             lua_ls = {},
             emmet_language_server = {},
             gopls = {},
+            zls = {},
             harper_ls = {
                 filetypes = { "markdown", "typst", "norg" },
             }

@@ -7,16 +7,17 @@ return {
     },
 
     keys = {
-        { mode = "n", "<Leader>cc", ":silent :botright 6 :Compile<CR>", { noremap = true } },
-        { mode = "n", "<Leader>cr", ":botright 6 :Recompile<CR>",       { noremap = true } },
-        { mode = "n", "<Leader>cq", ":QuickfixErrors<CR>",               { noremap = true } },
+        { mode = "n", "mc", ":botright 6 :Compile<CR>",   { noremap = true, silent = true } },
+        { mode = "n", "mr", ":botright 6 :Recompile<CR>", { noremap = true, silent = true } },
+        { mode = "n", "mq", ":QuickfixErrors<CR>",        { noremap = true, silent = true } },
     },
 
     config = function()
         vim.g.compile_mode = {
             baleia_setup = true,
             default_command = "",
-            input_word_completion = true
+            input_word_completion = true,
+            recompile_no_fail = true,
         }
 
         vim.api.nvim_create_autocmd("User", {

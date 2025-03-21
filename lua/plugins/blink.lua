@@ -16,6 +16,12 @@ return {
         },
 
         {
+            "L3MON4D3/LuaSnip",
+            version = "v2.*",
+            build = "make install_jsregexp"
+        },
+
+        {
             "windwp/nvim-autopairs",
             event = "InsertEnter",
             opts = {
@@ -71,9 +77,10 @@ return {
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 0,
-                update_delay_ms = 0,
             },
         },
+
+        snippets = { preset = 'luasnip' },
 
         sources = {
             default = { "lsp", "buffer", "path", "snippets", "lazydev" },

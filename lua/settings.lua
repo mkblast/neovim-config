@@ -53,12 +53,6 @@ opt.tabstop = 4
 opt.smartindent = true
 opt.breakindent = true
 
-vim.diagnostic.config({ virtual_text = { current_line = true } })
-
--- Show whitespace.
-vim.opt.list = true
-vim.opt.listchars = { space = '·', trail = '·', tab = '  ↦' }
-
 vim.filetype.add({
     extension = {
         ["http"] = "http",
