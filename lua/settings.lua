@@ -85,16 +85,6 @@ autocmd("FileType", {
     end
 })
 
-autocmd("BufWritePre", {
-    desc = "Remove whitespace on save",
-    pattern = "*",
-    callback = function()
-        local curpos = vim.api.nvim_win_get_cursor(0)
-        vim.cmd([[keeppatterns %s/\s\+$//e]])
-        vim.api.nvim_win_set_cursor(0, curpos)
-    end
-})
-
 -- Jump to last edit position on opening file
 autocmd("BufReadPost", {
     desc = "Open file at the last position it was edited earlier",
