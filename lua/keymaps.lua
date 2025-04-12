@@ -50,6 +50,7 @@ map("n",
 )
 
 -- movment remaps
+-- movment remaps
 map("v", "J", ":m '>+1<CR>gv=gv", default_opts)
 map("v", "K", ":m '<-2<CR>gv=gv", default_opts)
 
@@ -61,6 +62,7 @@ map("n", "N", "Nzzzv", default_opts)
 
 -- find and replace
 map("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { noremap = true })
+map("v", "<leader>r", [[y:<C-u>%s/\V<C-r>"/<C-r>"/gI<Left><Left><Left>]], { noremap = true })
 
 -- clipboard remaps
 map("x", "<leader>P", [["_dP]], default_opts)
