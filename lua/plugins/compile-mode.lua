@@ -18,6 +18,7 @@ return {
             default_command = "",
             input_word_completion = true,
             recompile_no_fail = true,
+            bang_expansion = true,
         }
 
         vim.api.nvim_create_autocmd("User", {

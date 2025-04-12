@@ -44,7 +44,7 @@ opt.lazyredraw = true
 opt.synmaxcol = 240
 
 -- Decrease update time
-vim.opt.updatetime = 250
+opt.updatetime = 250
 
 -- tabs, indent
 opt.expandtab = true

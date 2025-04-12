@@ -27,6 +27,7 @@ return {
             callback = function(event)
                 local opts = { buffer = event.buf, remap = false }
                 local fzf = require("fzf-lua")
+                local autocmd = vim.api.nvim_create_autocmd;
                 local map = vim.keymap.set
 
                 map("n", "gO", fzf.lsp_document_symbols, opts)
@@ -41,7 +42,6 @@ return {
                 map("n", "K", vim.lsp.buf.hover, opts)
                 map("n", "gD", vim.lsp.buf.declaration, opts)
                 map("n", "grs", vim.lsp.buf.signature_help, opts)
-                map("n", "grn", vim.lsp.buf.rename, opts)
                 map("n", "gra", vim.lsp.buf.code_action, opts)
                 map({ "n", "x" }, "grf", vim.lsp.buf.format, opts)
 
@@ -52,19 +52,19 @@ return {
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
                 if client and client.server_capabilities.documentHighlightProvider then
                     local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-                    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                    autocmd({ "CursorHold", "CursorHoldI" }, {
                         buffer = event.buf,
                         group = highlight_augroup,
                         callback = vim.lsp.buf.document_highlight,
                     })
 
-                    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+                    autocmd({ "CursorMoved", "CursorMovedI" }, {
                         buffer = event.buf,
                         group = highlight_augroup,
                         callback = vim.lsp.buf.clear_references,
                     })
 
-                    vim.api.nvim_create_autocmd("LspDetach", {
+                    autocmd("LspDetach", {
                         group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
                         callback = function(event2)
                             vim.lsp.buf.clear_references()

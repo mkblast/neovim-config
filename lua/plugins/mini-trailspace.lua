@@ -1,10 +1,8 @@
 return {
     "echasnovski/mini.trailspace",
 
-    version = '*',
-
     config = function()
-        local trailspace = require('mini.trailspace')
+        local trailspace = require("mini.trailspace")
 
         trailspace.setup({})
         vim.api.nvim_create_autocmd("BufWritePre", {
