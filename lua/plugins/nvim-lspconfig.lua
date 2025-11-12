@@ -120,15 +120,20 @@ return {
                 function(server_name)
                     local server = servers[server_name] or {}
                     server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                    require("lspconfig")[server_name].setup(server)
+                    vim.lsp.config(server_name, server)
+                    -- require("lspconfig")[server_name].setup(server)
                 end,
             },
         })
 
         -- setup custom lsp not in mason.
-        local lspconfig = require("lspconfig")
-        lspconfig["gdscript"].setup({
+        -- local lspconfig = require("lspconfig")
+        -- lspconfig["gdscript"].setup({
+        --     capabilities = capabilities,
+        -- })
+        vim.lsp.config.gdscript = {
             capabilities = capabilities,
-        })
+        }
+        vim.lsp.enable("gdscript")
     end,
 }

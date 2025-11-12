@@ -1,5 +1,5 @@
 return {
-    "mkblast/gruvbox.nvim",
+    "ellisonleao/gruvbox.nvim",
 
     priority = 1000,
 
@@ -12,6 +12,11 @@ return {
             dim_inactive = false,
             transparent_mode = false,
             contrast = "hard",
+            overrides = {
+                LspReferenceText = { bg = "#3c3836" },
+                LspReferenceRead = { bg = "#3c3836" },
+                LspReferenceWrite = { bg = "#3c3836" }
+            }
         })
 
         vim.cmd("colorscheme gruvbox")

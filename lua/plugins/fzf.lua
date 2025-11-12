@@ -11,7 +11,7 @@ return {
         local default_opts = { noremap = true, silent = true }
 
         map("n", "<leader>fp", fzf.files, default_opts)
-        map("n", "<leader>/", fzf.live_grep_native, default_opts)
+        map("n", "<leader>/", fzf.grep, default_opts)
         map("n", "<leader>*", fzf.grep_cword, default_opts)
         map("v", "<leader>*", fzf.grep_visual, default_opts)
         map("n", "<leader>fb", fzf.buffers, default_opts)
@@ -22,7 +22,8 @@ return {
 
         fzf.setup({
             files    = {
-                hidden = false,
+                hidden  = false,
+                fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude node_modules]],
             },
             keymap   = {
                 builtin = {

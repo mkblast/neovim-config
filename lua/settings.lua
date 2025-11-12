@@ -8,8 +8,7 @@ g.mapleader = " "
 
 -- general
 opt.swapfile = false
-opt.backup = false
-opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
+opt.backup = false opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 opt.undofile = true
 opt.confirm = true
 
@@ -104,7 +103,7 @@ autocmd("TextYankPost", {
     group = highlight_group,
     pattern = "*",
     callback = function()
-        vim.highlight.on_yank()
+        vim.hl.on_yank()
     end,
 })
 
