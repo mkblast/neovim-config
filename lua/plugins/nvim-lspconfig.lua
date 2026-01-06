@@ -100,9 +100,6 @@ return {
             emmet_language_server = {},
             gopls = {},
             zls = {},
-            harper_ls = {
-                filetypes = { "markdown", "typst", "norg" },
-            }
         }
 
         require("mason").setup()

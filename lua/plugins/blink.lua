@@ -3,7 +3,7 @@ return {
 
     lazy = false,
 
-    version = 'v0.*',
+    version = '1.*',
 
     dependencies = {
         {
@@ -20,17 +20,10 @@ return {
             version = "v2.*",
             build = "make install_jsregexp"
         },
-
-        {
-            "windwp/nvim-autopairs",
-            event = "InsertEnter",
-            opts = {
-                check_ts = true,
-            },
-        },
     },
 
     opts = {
+
         keymap = {
             preset = "none",
 
@@ -38,14 +31,14 @@ return {
             ["<C-e>"] = { "hide" },
             ["<C-o>"] = { "select_and_accept", "fallback" },
 
-            ["<C-j>"] = { "show", "select_next", "fallback" },
-            ["<C-k>"] = { "show", "select_prev", "fallback" },
+            ["<C-n>"] = { "show", "select_next", "fallback" },
+            ["<C-p>"] = { "show", "select_prev", "fallback" },
 
             ["<C-u>"] = { "scroll_documentation_up", "fallback" },
             ["<C-d>"] = { "scroll_documentation_down", "fallback" },
 
-            ["<C-n>"] = { "snippet_forward" },
-            ["<C-p>"] = { "snippet_backward" },
+            ["<C-j>"] = { "snippet_forward" },
+            ["<C-k>"] = { "snippet_backward" },
         },
 
         appearance = {
@@ -54,18 +47,20 @@ return {
         },
 
         cmdline = {
+            completion = { menu = { auto_show = true } },
             keymap = {
                 preset = "none",
                 ["<C-space>"] = { "show", },
                 ["<C-e>"] = { "hide" },
                 ["<C-o>"] = { "select_and_accept" },
 
-                ["<C-j>"] = { "show_and_insert", "select_next", "fallback" },
-                ["<C-k>"] = { "show_and_insert", "select_prev", "fallback" },
+                ["<C-n>"] = { "show_and_insert", "select_next", "fallback" },
+                ["<C-p>"] = { "show_and_insert", "select_prev", "fallback" },
             }
         },
 
         completion = {
+            keyword = { range = "full" },
             menu = {
                 draw = {
                     columns = {
@@ -76,7 +71,7 @@ return {
             },
             documentation = {
                 auto_show = true,
-                auto_show_delay_ms = 0,
+                auto_show_delay_ms = 500
             },
         },
 
@@ -93,7 +88,9 @@ return {
             },
         },
 
-        signature = { enabled = true }
+        signature = { enabled = true },
+
+        fuzzy = { implementation = "prefer_rust_with_warning" },
     },
 
     opts_extend = { "sources.default" }

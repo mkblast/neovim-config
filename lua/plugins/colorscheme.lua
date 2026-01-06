@@ -12,6 +12,14 @@ return {
             dim_inactive = false,
             transparent_mode = false,
             contrast = "hard",
+            italic = {
+                strings = false,
+                emphasis = true,
+                comments = true,
+                operators = false,
+                folds = true,
+            },
+
             overrides = {
                 LspReferenceText = { bg = "#3c3836" },
                 LspReferenceRead = { bg = "#3c3836" },

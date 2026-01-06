@@ -1,51 +1,57 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-
-    build = ":TSUpdate",
-
+    'nvim-treesitter/nvim-treesitter',
     dependencies = {
         {
-            "nvim-treesitter/nvim-treesitter-context",
-
-            opts = {},
-        }
+            'nvim-treesitter/nvim-treesitter-context',
+            opts = {
+                max_lines = 4,
+                multiline_threshold = 2,
+            },
+        },
     },
-
+    lazy = false,
+    branch = 'main',
+    build = ':TSUpdate',
     config = function()
-        require("nvim-treesitter.configs").setup({
-            ensure_installed = {
-                "c",
-                "jsdoc",
-                "lua",
-                "bash",
-                "vim",
-                "vimdoc",
-                "query",
-            },
+        local ts = require('nvim-treesitter')
 
-            sync_install = false,
-
-            auto_install = true,
-
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-
-            indent = {
-                enable = true
-            },
-
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<leader>ss",
-                    node_incremental = "<leader>si",
-                    scope_incremental = "<leader>sc",
-                    node_decremental = "<leader>sd",
-                },
-            },
-
+        ts.install({
+            "c",
+            "jsdoc",
+            "lua",
+            "bash",
+            "vim",
+            "vimdoc",
+            "query",
+        }, {
+            max_jobs = 8,
         })
-    end
+
+        local available_langs = ts.get_available()
+
+        local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
+
+        -- Auto-install parsers and enable highlighting on FileType
+        vim.api.nvim_create_autocmd('FileType', {
+            group = group,
+            desc = 'Enable treesitter highlighting and indentation',
+            callback = function(event)
+                local lang = vim.treesitter.language.get_lang(event.match) or event.match
+                local buf = event.buf
+
+                if not vim.tbl_contains(available_langs, lang) then
+                    return
+                end
+
+                -- Start highlighting immediately (works if parser exists)
+                pcall(vim.treesitter.start, buf, lang)
+
+                -- Enable treesitter indentation
+                vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+                -- Install missing parsers (async, no-op if already installed)
+                ts.install({ lang })
+            end,
+        })
+    end,
 }

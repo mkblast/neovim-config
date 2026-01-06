@@ -1,56 +1,65 @@
 -- aliases
-local autocmd = vim.api.nvim_create_autocmd
-local g = vim.g
-local opt = vim.opt
+local autocmd     = vim.api.nvim_create_autocmd
+local g           = vim.g
+local opt         = vim.opt
 
 -- setting the leader key
-g.mapleader = " "
+g.mapleader       = " "
 
 -- general
-opt.swapfile = false
-opt.backup = false opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
-opt.undofile = true
-opt.confirm = true
+opt.swapfile      = false
+opt.backup        = false
+opt.undodir       = os.getenv("HOME") .. "/.cache/nvim/undodir"
+opt.undofile      = true
+opt.confirm       = true
 
 -- ui
-opt.title = true
-opt.colorcolumn = "80"
-opt.autoread = true
-opt.number = true
-opt.rnu = true
-opt.showmatch = true
-opt.foldmethod = "marker"
-opt.splitright = true
-opt.splitbelow = true
-opt.ignorecase = true
-opt.smartcase = true
-opt.linebreak = true
-opt.showmode = false
-opt.wrap = false
-opt.scrolloff = 8
-opt.cursorline = true
-opt.signcolumn = "yes"
-opt.timeout = false
-opt.hlsearch = true
+opt.title         = true
+opt.colorcolumn   = "80"
+opt.autoread      = true
+opt.number        = true
+opt.rnu           = true
+opt.showmatch     = true
+opt.foldmethod    = "marker"
+opt.splitright    = true
+opt.splitbelow    = true
+opt.ignorecase    = true
+opt.smartcase     = true
+opt.linebreak     = true
+opt.showmode      = false
+opt.wrap          = false
+opt.scrolloff     = 8
+opt.cursorline    = true
+opt.signcolumn    = "yes"
+opt.timeout       = false
+opt.hlsearch      = true
 opt.termguicolors = true
-opt.inccommand = "split"
-opt.fillchars = { eob = " " }
+opt.inccommand    = "split"
+opt.fillchars     = { eob = " " }
 
 -- optimazations
-opt.hidden = true
-opt.history = 100
-opt.lazyredraw = true
-opt.synmaxcol = 240
+opt.hidden        = true
+opt.history       = 100
+opt.lazyredraw    = true
+opt.synmaxcol     = 240
 
 -- Decrease update time
-opt.updatetime = 250
+opt.updatetime    = 250
 
--- tabs, indent
-opt.expandtab = true
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.smartindent = true
-opt.breakindent = true
+-- tabs, indent, editing
+opt.expandtab     = true
+opt.shiftwidth    = 4
+opt.tabstop       = 4
+opt.smartindent   = true
+opt.breakindent   = true
+opt.autoindent    = true
+opt.formatoptions = "rqnl1j"
+opt.spelloptions  = 'camel'
+opt.virtualedit   = 'block'
+
+-- autocompletion
+-- insert mode completion options
+opt.completeopt   = "menuone,noselect"
 
 vim.filetype.add({
     extension = {
@@ -58,14 +67,6 @@ vim.filetype.add({
     },
 })
 
--- vim commands
-autocmd("FileType", {
-    desc = "don't auto commenting new lines",
-    pattern = "*",
-    callback = function()
-        vim.opt_local.formatoptions:remove({ "c", "r", "o" })
-    end,
-})
 
 autocmd("FileType", {
     desc = "remove line length marker for selected filetypes",
@@ -118,10 +119,6 @@ autocmd("BufEnter", {
         end
     end,
 })
-
--- autocompletion
--- insert mode completion options
-opt.completeopt = "menuone,noselect"
 
 -- startup
 -- disable builtins plugins
