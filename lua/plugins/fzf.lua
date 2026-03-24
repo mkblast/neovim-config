@@ -23,7 +23,7 @@ return {
         fzf.setup({
             files    = {
                 hidden  = false,
-                fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude node_modules]],
+                fd_opts = [[--color=never --hidden --type f --type l --exclude .git --exclude node_modules --exclude zig-pkg]],
             },
             keymap   = {
                 builtin = {

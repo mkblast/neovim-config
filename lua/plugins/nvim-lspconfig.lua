@@ -77,6 +77,8 @@ return {
 
         vim.diagnostic.config({
             virtual_text = { current_line = true },
+            severity_sort = true,
+            jump = { float = true },
             signs = {
                 text = {
                     [vim.diagnostic.severity.ERROR] = '󰅚',

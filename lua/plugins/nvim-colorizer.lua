@@ -4,10 +4,16 @@ return {
     event = "BufReadPre",
 
     opts = {
-        filetypes = { "html", "css", "javascriptreact", "typescriptreact" },
-        user_default_options = {
+        filetypes = {},
+        options = {
+            parser = {
+                html = true,
+                css = true,
+                javascriptreact = true,
+                typescriptreact = true,
+                tailwind = true,
+            },
             mode = "background",
-            tailwind = true,
         },
     },
 }

@@ -3,7 +3,7 @@ return {
 
     dependencies = {
         "nvim-lua/plenary.nvim",
-        { "m00qek/baleia.nvim", tag = "v1.3.0" },
+        { "m00qek/baleia.nvim", opts = {} },
     },
 
     keys = {
@@ -13,25 +13,23 @@ return {
     },
 
     config = function()
+        local compile = require("compile-mode")
+
         vim.g.compile_mode = {
-            baleia_setup = true,
-            default_command = "",
+            baleia_setup          = true,
+            default_command       = "",
             input_word_completion = true,
-            recompile_no_fail = true,
-            bang_expansion = true,
+            recompile_no_fail     = true,
+            bang_expansion        = true,
+            use_pseudo_terminal   = true,
         }
 
         vim.api.nvim_create_autocmd("User", {
             pattern = "CompilationFinished",
             callback = function(event)
                 if event.data.code ~= 0 then
-                    for _, win in ipairs(vim.api.nvim_list_wins()) do
-                        if vim.api.nvim_win_get_buf(win) == event.data.bufnr then
-                            vim.api.nvim_set_current_win(win)
-                            vim.api.nvim_command("CompileNextError")
-                            return
-                        end
-                    end
+                    vim.api.nvim_set_current_win(vim.fn.win_findbuf(event.data.bufnr)[1])
+                    vim.api.nvim_command("CompileNextError")
                 end
             end
         })

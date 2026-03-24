@@ -16,13 +16,17 @@ return {
         local ts = require('nvim-treesitter')
 
         ts.install({
+            'bash',
             "c",
-            "jsdoc",
+            "diff",
+            "html",
             "lua",
-            "bash",
+            "luadoc",
+            "markdown",
+            "markdown_inline",
+            "query",
             "vim",
             "vimdoc",
-            "query",
         }, {
             max_jobs = 8,
         })
