@@ -35,14 +35,11 @@ return {
                 map("n", "<leader>ld", fzf.diagnostics_document, opts)
 
                 map("n", "gd", fzf.lsp_definitions, opts)
-                map("n", "gri", fzf.lsp_implementations, opts)
                 map("n", "gro", fzf.lsp_typedefs, opts)
-                map("n", "grr", fzf.lsp_references, opts)
 
                 map("n", "K", vim.lsp.buf.hover, opts)
                 map("n", "gD", vim.lsp.buf.declaration, opts)
                 map("n", "grs", vim.lsp.buf.signature_help, opts)
-                map("n", "gra", vim.lsp.buf.code_action, opts)
                 map({ "n", "x" }, "grf", vim.lsp.buf.format, opts)
 
                 map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
@@ -73,20 +70,6 @@ return {
                     })
                 end
             end,
-        })
-
-        vim.diagnostic.config({
-            virtual_text = { current_line = true },
-            severity_sort = true,
-            jump = { float = true },
-            signs = {
-                text = {
-                    [vim.diagnostic.severity.ERROR] = '󰅚',
-                    [vim.diagnostic.severity.WARN] = '󰀪',
-                    [vim.diagnostic.severity.INFO] = '󰋽',
-                    [vim.diagnostic.severity.HINT] = '󰌶',
-                },
-            },
         })
 
         local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
@@ -125,11 +108,6 @@ return {
             },
         })
 
-        -- setup custom lsp not in mason.
-        -- local lspconfig = require("lspconfig")
-        -- lspconfig["gdscript"].setup({
-        --     capabilities = capabilities,
-        -- })
         vim.lsp.config.gdscript = {
             capabilities = capabilities,
         }

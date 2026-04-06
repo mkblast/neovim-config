@@ -13,15 +13,12 @@ return {
     },
 
     config = function()
-        local compile = require("compile-mode")
-
         vim.g.compile_mode = {
             baleia_setup          = true,
             default_command       = "",
             input_word_completion = true,
             recompile_no_fail     = true,
             bang_expansion        = true,
-            use_pseudo_terminal   = true,
         }
 
         vim.api.nvim_create_autocmd("User", {

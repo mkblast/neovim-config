@@ -1,7 +1,44 @@
+-- new ui
+require('vim._core.ui2').enable({
+    enable = true,
+    msg = {
+        targets = 'cmd',
+        cmd = {
+            height = 0.5
+        },
+        dialog = {
+            height = 0.5,
+        },
+        msg = {
+            height = 0.5,
+            timeout = 4000,
+        },
+        pager = {
+            height = 1,
+        },
+    },
+})
+
+-- Diagnostic
+vim.diagnostic.config({
+    virtual_text = { current_line = true },
+    severity_sort = true,
+    jump = { float = true },
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '󰅚',
+            [vim.diagnostic.severity.WARN] = '󰀪',
+            [vim.diagnostic.severity.INFO] = '󰋽',
+            [vim.diagnostic.severity.HINT] = '󰌶',
+        },
+    },
+})
+
 -- aliases
-local autocmd     = vim.api.nvim_create_autocmd
-local g           = vim.g
-local opt         = vim.opt
+local autocmd = vim.api.nvim_create_autocmd
+local g       = vim.g
+local opt     = vim.opt
+
 
 -- setting the leader key
 g.mapleader       = " "
@@ -81,7 +118,7 @@ autocmd("FileType", {
     pattern = "xml,html,xhtml,css,scss,yaml,json,norg,pug",
     callback = function()
         vim.opt_local.shiftwidth = 2
-        vim.opt_local.tabstop = 2
+        vim.opt_local.tabstop    = 2
     end
 })
 
@@ -146,6 +183,3 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
     g["loaded_" .. plugin] = 1
 end
-
--- disable nvim intro
-opt.shortmess:append "sI"

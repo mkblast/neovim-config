@@ -46,7 +46,24 @@ map("n",
     default_opts
 )
 
--- movment remaps
+-- incremental selection treesitter/lsp
+local select = require("vim.treesitter._select")
+map({ "n", "x", "o" }, "<A-n>", function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+        select.select_parent(vim.v.count1)
+    else
+        vim.lsp.buf.selection_range(vim.v.count1)
+    end
+end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
+
+map({ "n", "x", "o" }, "<A-p>", function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+        select.select_child(vim.v.count1)
+    else
+        vim.lsp.buf.selection_range(-vim.v.count1)
+    end
+end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
 -- movment remaps
 map("v", "J", ":m '>+1<CR>gv=gv", default_opts)
 map("v", "K", ":m '<-2<CR>gv=gv", default_opts)
