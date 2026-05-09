@@ -131,9 +131,9 @@ autocmd("BufEnter", {
     group = oil_local_cwd,
     callback = function(o)
         if o.match:find("^oil://") then
-            vim.cmd.cd(require("oil").get_current_dir())
+            vim.cmd.lcd(require("oil").get_current_dir())
         else
-            vim.cmd.cd(vim.fn.getcwd(-1))
+            vim.cmd.lcd(vim.fn.getcwd(-1))
         end
     end,
     nested = true
