@@ -18,8 +18,8 @@ map("n", "<S-TAB>", ":bprevious<CR>", default_opts)
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", default_opts)
 
 -- Indent while remaining in visual mode.
-vim.keymap.set('v', '<', '<gv', default_opts)
-vim.keymap.set('v', '>', '>gv', default_opts)
+map('v', '<', '<gv', default_opts)
+map('v', '>', '>gv', default_opts)
 
 -- file manager maps
 map("n",

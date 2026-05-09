@@ -3,7 +3,7 @@ return {
 
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "sindrets/diffview.nvim",
+        "esmuellert/codediff.nvim",
     },
 
     keys = {
@@ -12,8 +12,7 @@ return {
 
     opts = {
         integrations = {
-        -- fzf_lua = true,
-            diffview = true,
+            codediff = true,
         },
         kind = "replace"
     }

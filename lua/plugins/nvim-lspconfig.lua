@@ -22,24 +22,20 @@ return {
     },
 
     config = function()
-        vim.api.nvim_create_autocmd("LspAttach", {
+        local autocmd = vim.api.nvim_create_autocmd;
+        autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
             callback = function(event)
                 local opts = { buffer = event.buf, remap = false }
-                local fzf = require("fzf-lua")
-                local autocmd = vim.api.nvim_create_autocmd;
                 local map = vim.keymap.set
 
-                map("n", "gO", fzf.lsp_document_symbols, opts)
-                map("n", "<leader>lw", fzf.lsp_live_workspace_symbols, opts)
-                map("n", "<leader>ld", fzf.diagnostics_document, opts)
-
-                map("n", "gd", fzf.lsp_definitions, opts)
-                map("n", "gro", fzf.lsp_typedefs, opts)
-
+                map("n", "gro", vim.lsp.buf.type_definition, opts)
+                map("n", "gd", vim.lsp.buf.definition, opts)
+                map("n", "grw", vim.lsp.buf.workspace_symbol, opts)
                 map("n", "K", vim.lsp.buf.hover, opts)
                 map("n", "gD", vim.lsp.buf.declaration, opts)
                 map("n", "grs", vim.lsp.buf.signature_help, opts)
+
                 map({ "n", "x" }, "grf", vim.lsp.buf.format, opts)
 
                 map("i", "<C-h>", vim.lsp.buf.signature_help, opts)

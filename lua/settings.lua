@@ -1,23 +1,4 @@
--- new ui
-require('vim._core.ui2').enable({
-    enable = true,
-    msg = {
-        targets = 'cmd',
-        cmd = {
-            height = 0.5
-        },
-        dialog = {
-            height = 0.5,
-        },
-        msg = {
-            height = 0.5,
-            timeout = 4000,
-        },
-        pager = {
-            height = 1,
-        },
-    },
-})
+require("vim._core.ui2").enable({})
 
 -- Diagnostic
 vim.diagnostic.config({
@@ -150,11 +131,12 @@ autocmd("BufEnter", {
     group = oil_local_cwd,
     callback = function(o)
         if o.match:find("^oil://") then
-            vim.cmd("lcd " .. require("oil").get_current_dir())
+            vim.cmd.cd(require("oil").get_current_dir())
         else
-            vim.cmd("lcd " .. vim.fn.getcwd(-1))
+            vim.cmd.cd(vim.fn.getcwd(-1))
         end
     end,
+    nested = true
 })
 
 -- startup

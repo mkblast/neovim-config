@@ -54,8 +54,8 @@ return {
                 ["<C-e>"] = { "hide" },
                 ["<C-o>"] = { "select_and_accept" },
 
-                ["<C-n>"] = { "show_and_insert", "select_next", "fallback" },
-                ["<C-p>"] = { "show_and_insert", "select_prev", "fallback" },
+                ["<C-n>"] = { "select_next", "fallback" },
+                ["<C-p>"] = { "select_prev", "fallback" },
             }
         },
 
