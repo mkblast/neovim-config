@@ -11,11 +11,5 @@ return {
         },
         delete_to_trash = true,
         skip_confirm_for_simple_edits = true,
-
-        view_options = {
-            is_always_hidden = function(name)
-                return vim.startswith(name, ".git")
-            end,
-        },
     }
 }

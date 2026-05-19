@@ -8,12 +8,6 @@ map("", "<down>", "<nop>", default_opts)
 map("", "<left>", "<nop>", default_opts)
 map("", "<right>", "<nop>", default_opts)
 
--- buffer control
-map("n", "<leader>bd", ":bdelete!<CR>", default_opts)
-map("n", "<leader>bs", ":w<cr>:bdelete<cr>", default_opts)
-map("n", "<TAB>", ":bnext<CR>", default_opts)
-map("n", "<S-TAB>", ":bprevious<CR>", default_opts)
-
 -- hide highlight search
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", default_opts)
 
@@ -45,6 +39,7 @@ map("n",
     end,
     default_opts
 )
+
 
 -- incremental selection treesitter/lsp
 local select = require("vim.treesitter._select")

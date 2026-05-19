@@ -80,6 +80,15 @@ return {
         sources = {
             default = { "lsp", "buffer", "path", "snippets", "lazydev" },
             providers = {
+                buffer = {
+                    opts = {
+                        get_bufnrs = function()
+                            return vim.tbl_filter(function(bufnr)
+                                return vim.bo[bufnr].buftype == ''
+                            end, vim.api.nvim_list_bufs())
+                        end
+                    }
+                },
                 lazydev = {
                     name = "LazyDev",
                     module = "lazydev.integrations.blink",

@@ -22,20 +22,25 @@ return {
     },
 
     config = function()
-        local autocmd = vim.api.nvim_create_autocmd;
-        autocmd("LspAttach", {
+        vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
             callback = function(event)
                 local opts = { buffer = event.buf, remap = false }
+                local fzf = require("fzf-lua")
+                local autocmd = vim.api.nvim_create_autocmd;
                 local map = vim.keymap.set
 
-                map("n", "gro", vim.lsp.buf.type_definition, opts)
-                map("n", "gd", vim.lsp.buf.definition, opts)
-                map("n", "grw", vim.lsp.buf.workspace_symbol, opts)
+                map("n", "gO", fzf.lsp_document_symbols, opts)
+                map("n", "<leader>lw", fzf.lsp_live_workspace_symbols, opts)
+                map("n", "<leader>ld", fzf.diagnostics_document, opts)
+
+                map("n", "gd", fzf.lsp_definitions, opts)
+                map("n", "gro", fzf.lsp_typedefs, opts)
+                map("n", "grr", fzf.lsp_references, opts)
+
                 map("n", "K", vim.lsp.buf.hover, opts)
                 map("n", "gD", vim.lsp.buf.declaration, opts)
                 map("n", "grs", vim.lsp.buf.signature_help, opts)
-
                 map({ "n", "x" }, "grf", vim.lsp.buf.format, opts)
 
                 map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
@@ -78,31 +83,27 @@ return {
                 }
             },
             lua_ls = {},
-            emmet_language_server = {},
+            emmet_language_server = {
+                filetypes = {
+                    "astro", "css", "eruby", "html", "htmlangular", "htmldjango",
+                    "javascriptreact", "less", "sass", "blade",
+                    "scss", "svelte", "typescriptreact", "vue"
+                }
+            },
             gopls = {},
             zls = {},
         }
-
-        require("mason").setup()
-
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {})
 
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+        require("mason").setup()
+        require("mason-lspconfig").setup()
 
-        require("mason-lspconfig").setup({
-            ensure_installed = {},
-            automatic_installation = false,
-            handlers = {
-                -- default handler
-                function(server_name)
-                    local server = servers[server_name] or {}
-                    server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                    vim.lsp.config(server_name, server)
-                    -- require("lspconfig")[server_name].setup(server)
-                end,
-            },
-        })
+        for name, server in pairs(servers) do
+            vim.lsp.config(name, server)
+            vim.lsp.enable(name)
+        end
 
         vim.lsp.config.gdscript = {
             capabilities = capabilities,

@@ -12,6 +12,7 @@ return {
 
     opts = {
         integrations = {
+            fzf_lua  = false,
             codediff = true,
         },
         kind = "replace"
