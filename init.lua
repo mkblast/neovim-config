@@ -31,6 +31,5 @@ vim.opt.rtp:prepend(lazypath)
 
 -- imports
 require("lazy").setup("plugins", {
-    change_detection = { notify = false },
     install = { colorscheme = { "gruvbox" } }
 })

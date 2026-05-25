@@ -126,18 +126,18 @@ autocmd("TextYankPost", {
     end,
 })
 
-local oil_local_cwd = vim.api.nvim_create_augroup("OilLocalCwd", { clear = true })
-autocmd("BufEnter", {
-    group = oil_local_cwd,
-    callback = function(o)
-        if o.match:find("^oil://") then
-            vim.cmd.lcd(require("oil").get_current_dir())
-        else
-            vim.cmd.lcd(vim.fn.getcwd(-1))
-        end
-    end,
-    nested = true
-})
+-- local oil_local_cwd = vim.api.nvim_create_augroup("OilLocalCwd", { clear = true })
+-- autocmd("BufEnter", {
+--     group = oil_local_cwd,
+--     callback = function(o)
+--         if o.match:find("^oil://") then
+--             vim.cmd.lcd(require("oil").get_current_dir())
+--         else
+--             vim.cmd.lcd(vim.fn.getcwd(-1))
+--         end
+--     end,
+--     nested = true
+-- })
 
 -- startup
 -- disable builtins plugins

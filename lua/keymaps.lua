@@ -15,6 +15,31 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>", default_opts)
 map('v', '<', '<gv', default_opts)
 map('v', '>', '>gv', default_opts)
 
+local startup_dir = vim.fn.getcwd()
+
+local function cd(path)
+    vim.cmd.chd(path)
+    vim.print("cd: " .. path)
+end
+
+map("n", "cd",
+    function()
+        if vim.bo.filetype == "oil" then
+            cd(require("oil").get_current_dir())
+        else
+            cd(startup_dir)
+        end
+    end,
+    default_opts)
+
+map("n", "cl",
+    function()
+        local filepath = vim.api.nvim_buf_get_name(0)
+        local path = vim.fs.dirname(filepath)
+        cd(path)
+    end,
+    default_opts)
+
 -- file manager maps
 map("n",
     "<C-n>",

@@ -1,64 +1,46 @@
 return {
     "ibhagwan/fzf-lua",
 
+    enabled = false,
+
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
     config = function()
-        local fzf = require("fzf-lua")
-        local actions = require("fzf-lua").actions
+        local fzf          = require("fzf-lua")
 
-        local map = vim.keymap.set
+        local  map         = vim.keymap.set
         local default_opts = { noremap = true, silent = true }
 
-        local grep_opts = {
-            "rg",
-            "--follow",
-            "--glob",
-            '"!**/.git/*"',
-            "--column",
-            "--line-number",
-            "--no-heading",
-            "--color=always",
-            "--smart-case",
-            "--max-columns=4096",
-            "-e",
-        }
-
-        map("n", "<leader>f", fzf.files, default_opts)
-        map("n", "<leader>/", function() fzf.grep({ no_esc = true }) end, default_opts)
-        map("n", "<leader>*", fzf.grep_cword, default_opts)
-        map("v", "<leader>*", fzf.grep_visual, default_opts)
-        map("n", "<leader>b", fzf.buffers, default_opts)
+        map("n", "<leader>f" , fzf.files, default_opts)
+        map("n", "<leader>/" , function() fzf.grep({ no_esc = true }) end, default_opts)
+        map("n", "<leader>*" , fzf.grep_cword, default_opts)
+        map("v", "<leader>*" , fzf.grep_visual, default_opts)
+        map("n", "<leader>b" , fzf.buffers, default_opts)
         map("n", "<leader>gh", fzf.helptags, default_opts)
         map("n", "<leader>gr", fzf.resume, default_opts)
         map("n", "<leader>gm", fzf.manpages, default_opts)
         map("n", "<leader>gk", fzf.keymaps, default_opts)
 
+        local get_opened_files = function()
+            local paths = {}
+            local buffers = vim.api.nvim_list_bufs()
+            for _, bufnr in ipairs(buffers) do
+                if vim.api.nvim_buf_is_loaded(bufnr) and vim.fn.buflisted(bufnr) == 1 then
+                    local path = vim.api.nvim_buf_get_name(bufnr)
+                    table.insert(paths, path)
+                end
+            end
+            return paths
+        end
+
         -- Grep only opened files.
         map("n", "<leader>q", function()
-            local paths = {}
-            local buffers = vim.api.nvim_list_bufs()
-            for _, bufnr in ipairs(buffers) do
-                if vim.api.nvim_buf_is_loaded(bufnr) and vim.fn.buflisted(bufnr) == 1 then
-                    local path = vim.api.nvim_buf_get_name(bufnr)
-                    table.insert(paths, path)
-                end
-            end
-
+            local paths = get_opened_files()
             fzf.grep({ search_paths = paths })
-        end
-        , default_opts)
+        end, default_opts)
 
         map("v", "<leader>q", function()
-            local paths = {}
-            local buffers = vim.api.nvim_list_bufs()
-            for _, bufnr in ipairs(buffers) do
-                if vim.api.nvim_buf_is_loaded(bufnr) and vim.fn.buflisted(bufnr) == 1 then
-                    local path = vim.api.nvim_buf_get_name(bufnr)
-                    table.insert(paths, path)
-                end
-            end
-
+            local paths = get_opened_files()
             fzf.grep_visual({ search_paths = paths })
         end
         , default_opts)
