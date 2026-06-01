@@ -1,9 +1,9 @@
 return {
     "saghen/blink.cmp",
 
-    lazy = false,
+    lazy         = false,
 
-    version = '1.*',
+    version      = '1.*',
 
     dependencies = {
         {
@@ -18,50 +18,50 @@ return {
         {
             "L3MON4D3/LuaSnip",
             version = "v2.*",
-            build = "make install_jsregexp"
+            build   = "make install_jsregexp"
         },
     },
 
-    opts = {
+    opts         = {
 
-        keymap = {
-            preset = "none",
+        keymap     = {
+            preset        = "none",
 
             ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-            ["<C-e>"] = { "hide" },
-            ["<C-o>"] = { "select_and_accept", "fallback" },
+            ["<C-e>"]     = { "hide" },
+            ["<C-o>"]     = { "select_and_accept", "fallback" },
 
-            ["<C-n>"] = { "show", "select_next", "fallback" },
-            ["<C-p>"] = { "show", "select_prev", "fallback" },
+            ["<C-n>"]     = { "show", "select_next", "fallback" },
+            ["<C-p>"]     = { "show", "select_prev", "fallback" },
 
-            ["<C-u>"] = { "scroll_documentation_up", "fallback" },
-            ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+            ["<C-u>"]     = { "scroll_documentation_up", "fallback" },
+            ["<C-d>"]     = { "scroll_documentation_down", "fallback" },
 
-            ["<C-j>"] = { "snippet_forward" },
-            ["<C-k>"] = { "snippet_backward" },
+            ["<C-j>"]     = { "snippet_forward" },
+            ["<C-k>"]     = { "snippet_backward" },
         },
 
         appearance = {
             use_nvim_cmp_as_default = true,
-            nerd_font_variant = "mono"
+            nerd_font_variant       = "mono"
         },
 
-        cmdline = {
+        cmdline    = {
             completion = { menu = { auto_show = true } },
-            keymap = {
-                preset = "none",
+            keymap     = {
+                preset        = "none",
                 ["<C-space>"] = { "show", },
-                ["<C-e>"] = { "hide" },
-                ["<C-o>"] = { "select_and_accept" },
+                ["<C-e>"]     = { "hide" },
+                ["<C-o>"]     = { "select_and_accept" },
 
-                ["<C-n>"] = { "select_next", "fallback" },
-                ["<C-p>"] = { "select_prev", "fallback" },
+                ["<C-n>"]     = { "select_next", "fallback" },
+                ["<C-p>"]     = { "select_prev", "fallback" },
             }
         },
 
         completion = {
-            keyword = { range = "full" },
-            menu = {
+            keyword       = { range = "full" },
+            menu          = {
                 draw = {
                     columns = {
                         { "label",     "label_description", gap = 1 },
@@ -75,12 +75,12 @@ return {
             },
         },
 
-        snippets = { preset = 'luasnip' },
+        snippets   = { preset = 'luasnip' },
 
-        sources = {
-            default = { "lsp", "buffer", "path", "snippets", "lazydev" },
+        sources    = {
+            default   = { "lsp", "buffer", "path", "snippets", "lazydev" },
             providers = {
-                buffer = {
+                buffer  = {
                     opts = {
                         get_bufnrs = function()
                             return vim.tbl_filter(function(bufnr)
@@ -90,17 +90,17 @@ return {
                     }
                 },
                 lazydev = {
-                    name = "LazyDev",
-                    module = "lazydev.integrations.blink",
+                    name         = "LazyDev",
+                    module       = "lazydev.integrations.blink",
                     score_offset = 100,
                 },
             },
         },
 
-        signature = { enabled = true },
+        signature  = { enabled = true },
 
-        fuzzy = { implementation = "prefer_rust_with_warning" },
+        fuzzy      = { implementation = "prefer_rust_with_warning" },
     },
 
-    opts_extend = { "sources.default" }
+    opts_extend  = { "sources.default" }
 }

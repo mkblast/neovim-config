@@ -3,28 +3,22 @@ return {
 
     priority = 1000,
 
-    lazy = false,
+    lazy     = false,
 
-    init = function()
+    init     = function()
         vim.o.background = "dark"
 
         require("gruvbox").setup({
-            dim_inactive = false,
+            dim_inactive     = false,
             transparent_mode = false,
-            contrast = "hard",
-            italic = {
-                strings = false,
-                emphasis = true,
-                comments = true,
+            contrast         = "hard",
+            italic           = {
+                strings   = false,
+                emphasis  = true,
+                comments  = true,
                 operators = false,
-                folds = true,
+                folds     = true,
             },
-
-            overrides = {
-                LspReferenceText = { bg = "#3c3836" },
-                LspReferenceRead = { bg = "#3c3836" },
-                LspReferenceWrite = { bg = "#3c3836" }
-            }
         })
 
         vim.cmd("colorscheme gruvbox")

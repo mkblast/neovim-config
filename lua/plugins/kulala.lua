@@ -1,7 +1,7 @@
 return {
     "mistweaverco/kulala.nvim",
 
-    ft = "http",
+    ft   = "http",
 
     keys = {
         { mode = "n", "<leader>kk", function() require("kulala").jump_prev() end, { noremap = true, silent = true } },

@@ -6,15 +6,15 @@ return {
         "esmuellert/codediff.nvim",
     },
 
-    keys = {
+    keys         = {
         { mode = "n", "<leader>ng", "<cmd>Neogit<CR>", { noremap = true, silent = true } }
     },
 
-    opts = {
+    opts         = {
         integrations = {
             fzf_lua  = false,
             codediff = true,
         },
-        kind = "replace"
+        kind         = "replace"
     }
 }

@@ -1,7 +1,7 @@
 return {
     "folke/ts-comments.nvim",
 
-    opts = {},
+    opts  = {},
 
     event = "VeryLazy",
 }

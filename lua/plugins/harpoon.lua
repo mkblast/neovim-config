@@ -3,7 +3,7 @@ return {
 
     dependencies = { "nvim-lua/plenary.nvim" },
 
-    keys = {
+    keys         = {
         { mode = "n", "<C-h>",     function() require("harpoon.ui").nav_file(1) end,         { noremap = true, silent = true } },
         { mode = "n", "<C-j>",     function() require("harpoon.ui").nav_file(2) end,         { noremap = true, silent = true } },
         { mode = "n", "<C-k>",     function() require("harpoon.ui").nav_file(3) end,         { noremap = true, silent = true } },
@@ -12,5 +12,5 @@ return {
         { mode = "n", "<leader>o", function() require("harpoon.mark").add_file() end,        { noremap = true, silent = true } },
     },
 
-    opts = {}
+    opts         = {}
 }

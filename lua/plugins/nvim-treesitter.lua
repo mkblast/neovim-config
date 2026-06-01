@@ -1,8 +1,8 @@
 return {
     'nvim-treesitter/nvim-treesitter',
-    lazy = false,
+    lazy   = false,
     branch = 'main',
-    build = ':TSUpdate',
+    build  = ':TSUpdate',
     config = function()
         local ts = require('nvim-treesitter')
 
@@ -28,11 +28,11 @@ return {
 
         -- Auto-install parsers and enable highlighting on FileType
         vim.api.nvim_create_autocmd('FileType', {
-            group = group,
-            desc = 'Enable treesitter highlighting and indentation',
+            group    = group,
+            desc     = 'Enable treesitter highlighting and indentation',
             callback = function(event)
                 local lang = vim.treesitter.language.get_lang(event.match) or event.match
-                local buf = event.buf
+                local buf  = event.buf
 
                 if not vim.tbl_contains(available_langs, lang) then
                     return

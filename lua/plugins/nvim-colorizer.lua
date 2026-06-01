@@ -3,17 +3,17 @@ return {
 
     event = "BufReadPre",
 
-    opts = {
+    opts  = {
         filetypes = {},
-        options = {
+        options   = {
             parser = {
-                html = true,
-                css = true,
+                html            = true,
+                css             = true,
                 javascriptreact = true,
                 typescriptreact = true,
-                tailwind = true,
+                tailwind        = true,
             },
-            mode = "background",
+            mode   = "background",
         },
     },
 }

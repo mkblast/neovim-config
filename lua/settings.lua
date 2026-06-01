@@ -2,15 +2,15 @@ require("vim._core.ui2").enable({})
 
 -- Diagnostic
 vim.diagnostic.config({
-    virtual_text = { current_line = true },
+    virtual_text  = { current_line = true },
     severity_sort = true,
-    jump = { float = true },
-    signs = {
+    jump          = { float = true },
+    signs         = {
         text = {
             [vim.diagnostic.severity.ERROR] = '󰅚',
-            [vim.diagnostic.severity.WARN] = '󰀪',
-            [vim.diagnostic.severity.INFO] = '󰋽',
-            [vim.diagnostic.severity.HINT] = '󰌶',
+            [vim.diagnostic.severity.WARN]  = '󰀪',
+            [vim.diagnostic.severity.INFO]  = '󰋽',
+            [vim.diagnostic.severity.HINT]  = '󰌶',
         },
     },
 })
@@ -87,16 +87,16 @@ vim.filetype.add({
 
 
 autocmd("FileType", {
-    desc = "remove line length marker for selected filetypes",
-    pattern = "text,markdown,html,xhtml,oil",
+    desc     = "remove line length marker for selected filetypes",
+    pattern  = "text,markdown,html,xhtml,oil",
     callback = function()
         vim.opt_local.cc:append({ 0 })
     end
 })
 
 autocmd("FileType", {
-    desc = " 2 spaces for selected filetypes",
-    pattern = "xml,html,xhtml,css,scss,yaml,json,norg,pug",
+    desc     = " 2 spaces for selected filetypes",
+    pattern  = "xml,html,xhtml,css,scss,yaml,json,norg,pug",
     callback = function()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.tabstop    = 2
@@ -105,22 +105,22 @@ autocmd("FileType", {
 
 -- Jump to last edit position on opening file
 autocmd("BufReadPost", {
-    desc = "Open file at the last position it was edited earlier",
+    desc    = "Open file at the last position it was edited earlier",
     pattern = "*",
     command = 'silent! normal! g`"zv'
 })
 
 autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-    desc = "Reload file",
+    desc    = "Reload file",
     command = "if mode() != 'c' | silent! checktime | endif",
     pattern = { "*" },
 })
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
-    desc = "Highlight on yank",
-    group = highlight_group,
-    pattern = "*",
+    desc     = "Highlight on yank",
+    group    = highlight_group,
+    pattern  = "*",
     callback = function()
         vim.hl.on_yank()
     end,

@@ -21,13 +21,13 @@ return {
         'saghen/blink.cmp',
     },
 
-    config = function()
+    config       = function()
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
             callback = function(event)
-                local opts = { buffer = event.buf, remap = false }
+                local opts    = { buffer = event.buf, remap = false }
                 local autocmd = vim.api.nvim_create_autocmd;
-                local map = vim.keymap.set
+                local map     = vim.keymap.set
 
                 map("n", "<leader>lw", vim.lsp.buf.workspace_symbol, opts)
 
@@ -41,43 +41,19 @@ return {
                 map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
                 map("n", "gl", vim.diagnostic.open_float, opts)
-
-                local client = vim.lsp.get_client_by_id(event.data.client_id)
-                if client and client.server_capabilities.documentHighlightProvider then
-                    local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-                    autocmd({ "CursorHold", "CursorHoldI" }, {
-                        buffer = event.buf,
-                        group = highlight_augroup,
-                        callback = vim.lsp.buf.document_highlight,
-                    })
-
-                    autocmd({ "CursorMoved", "CursorMovedI" }, {
-                        buffer = event.buf,
-                        group = highlight_augroup,
-                        callback = vim.lsp.buf.clear_references,
-                    })
-
-                    autocmd("LspDetach", {
-                        group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
-                        callback = function(event2)
-                            vim.lsp.buf.clear_references()
-                            vim.api.nvim_clear_autocmds { group = "lsp-highlight", buffer = event2.buf }
-                        end,
-                    })
-                end
             end,
         })
 
-        local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
+        local capabilities     = require('blink.cmp').get_lsp_capabilities({}, true)
 
-        local servers = {
-            clangd = {
+        local servers          = {
+            clangd                = {
                 cmd = {
                     "clangd",
                     "--fallback-style=webkit"
                 }
             },
-            lua_ls = {},
+            lua_ls                = {},
             emmet_language_server = {
                 filetypes = {
                     "astro", "css", "eruby", "html", "htmlangular", "htmldjango",
@@ -85,8 +61,7 @@ return {
                     "scss", "svelte", "typescriptreact", "vue"
                 }
             },
-            gopls = {},
-            zls = {},
+            gopls                 = {},
         }
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {})

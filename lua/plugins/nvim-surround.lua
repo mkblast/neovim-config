@@ -3,7 +3,7 @@ return {
 
     version = "*",
 
-    event = "VeryLazy",
+    event   = "VeryLazy",
 
-    opts = {}
+    opts    = {}
 }

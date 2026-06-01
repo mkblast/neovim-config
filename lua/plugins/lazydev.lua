@@ -3,9 +3,9 @@ return {
 
     dependencies = { "Bilal2453/luvit-meta", lazy = true },
 
-    ft = "lua",
+    ft           = "lua",
 
-    opts = {
+    opts         = {
         library = {
             "luvit-meta/library"
         },
