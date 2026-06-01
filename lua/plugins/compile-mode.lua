@@ -6,19 +6,33 @@ return {
         { "m00qek/baleia.nvim", opts = {} },
     },
 
-    keys = {
+    keys         = {
         { mode = "n", "mc", ":botright 6 :Compile<CR>",   { noremap = true, silent = true } },
         { mode = "n", "mr", ":botright 6 :Recompile<CR>", { noremap = true, silent = true } },
         { mode = "n", "mq", ":QuickfixErrors<CR>",        { noremap = true, silent = true } },
     },
 
-    config = function()
+    config       = function()
         vim.g.compile_mode = {
             baleia_setup          = true,
             default_command       = "",
             input_word_completion = true,
             recompile_no_fail     = true,
             bang_expansion        = true,
+            error_regexp_table    = {
+                jai  = {
+                    regex    = [[\([^ \n():]\+\.jai\):\([0-9]\+\)\%\(,\([0-9]\+\):\)\?]],
+                    filename = 1,
+                    row      = 2,
+                    col      = 3,
+                },
+                odin = {
+                    regex    = [[^\([^( \n]\+\)(\([0-9]\+\):\([0-9]\+\)) \(.*\)$]],
+                    filename = 1,
+                    row      = 2,
+                    col      = 3,
+                }
+            }
         }
 
         vim.api.nvim_create_autocmd("User", {
