@@ -1,5 +1,5 @@
 -- aliases
-local map = vim.keymap.set
+local map          = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
 
 -- don't use arrow keys
@@ -14,31 +14,6 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>", default_opts)
 -- Indent while remaining in visual mode.
 map('v', '<', '<gv', default_opts)
 map('v', '>', '>gv', default_opts)
-
-local startup_dir = vim.fn.getcwd()
-
-local function cd(path)
-    vim.cmd.chd(path)
-    vim.print("cd: " .. path)
-end
-
-map("n", "cd",
-    function()
-        if vim.bo.filetype == "oil" then
-            cd(require("oil").get_current_dir())
-        else
-            cd(startup_dir)
-        end
-    end,
-    default_opts)
-
-map("n", "cl",
-    function()
-        local filepath = vim.api.nvim_buf_get_name(0)
-        local path = vim.fs.dirname(filepath)
-        cd(path)
-    end,
-    default_opts)
 
 -- file manager maps
 map("n",
@@ -83,6 +58,9 @@ map({ "n", "x", "o" }, "<A-p>", function()
         vim.lsp.buf.selection_range(-vim.v.count1)
     end
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
+-- Diag
+map('n', '<leader>ld', vim.diagnostic.setloclist, default_opts)
 
 -- movment remaps
 map("v", "J", ":m '>+1<CR>gv=gv", default_opts)

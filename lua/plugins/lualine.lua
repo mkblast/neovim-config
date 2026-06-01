@@ -3,14 +3,14 @@ return {
 
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
-    opts = {
-        options = {
-            icons_enabled = true,
-            theme = "auto",
-            transparent = false,
+    config       = {
+        options  = {
+            icons_enabled        = true,
+            theme                = "auto",
+            transparent          = false,
             component_separators = { left = "•", right = "•" },
-            section_separators = { left = "", right = "" },
-            globalstatus = true,
+            section_separators   = { left = "", right = "" },
+            globalstatus         = true,
         },
 
         sections = {
@@ -18,10 +18,20 @@ return {
                 {
                     "filename",
                     show_filename_only = false,
-                    newfile_status = true,
-                    path = 1,
-                }
-            }
+                    newfile_status     = true,
+                    path               = 1,
+                },
+            },
+            lualine_x = {
+                {
+                    function()
+                        return vim.fs.basename(vim.fn.getcwd())
+                    end
+                },
+                'encoding',
+                'fileformat',
+                'filetype'
+            },
         }
     }
 }

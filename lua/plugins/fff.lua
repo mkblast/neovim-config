@@ -11,11 +11,12 @@ return {
         local fff = require("fff")
 
         fff.setup({
-            base_path = vim.fn.getcwd(),
-            layout    = {
+            base_path       = vim.fn.getcwd(),
+            prompt_vim_mode = true,
+            layout          = {
                 prompt_position = 'top',
             },
-            debug     = {
+            debug           = {
                 enable      = true,
                 show_scores = true,
             }
