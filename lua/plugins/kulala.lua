@@ -1,6 +1,8 @@
 return {
     "mistweaverco/kulala.nvim",
 
+    enabled = false,
+
     ft   = "http",
 
     keys = {
@@ -9,6 +11,4 @@ return {
         { mode = "n", "<leader>kr", function() require("kulala").run() end,       { noremap = true, silent = true } },
         { mode = "n", "<leader>kc", function() require("kulala").close() end,     { noremap = true, silent = true } },
     },
-
-    opts = {}
 }

@@ -71,7 +71,7 @@ opt.tabstop       = 4
 opt.smartindent   = true
 opt.breakindent   = true
 opt.autoindent    = true
-opt.formatoptions = "rqnl1j"
+opt.formatoptions = "rqnl1jt"
 opt.spelloptions  = 'camel'
 opt.virtualedit   = 'block'
 

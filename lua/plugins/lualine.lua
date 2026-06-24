@@ -3,8 +3,10 @@ return {
 
     dependencies = { "nvim-tree/nvim-web-devicons" },
 
-    config       = {
-        options  = {
+    opts         = {
+
+        extensions = { require("compile-mode.extensions.lualine") },
+        options    = {
             icons_enabled        = true,
             theme                = "auto",
             transparent          = false,
@@ -13,7 +15,7 @@ return {
             globalstatus         = true,
         },
 
-        sections = {
+        sections   = {
             lualine_c = {
                 {
                     "filename",

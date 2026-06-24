@@ -9,10 +9,8 @@ return {
         vim.o.background = "dark"
 
         require("gruvbox").setup({
-            dim_inactive     = false,
-            transparent_mode = false,
-            contrast         = "hard",
-            italic           = {
+            contrast = "hard",
+            italic   = {
                 strings   = false,
                 emphasis  = true,
                 comments  = true,

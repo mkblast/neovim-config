@@ -16,6 +16,9 @@ return {
             layout          = {
                 prompt_position = 'top',
             },
+            grep            = {
+                enable_filename_constraint = true,
+            },
             debug           = {
                 enable      = true,
                 show_scores = true,
@@ -31,6 +34,9 @@ return {
 
         map("n", "<leader>f", function() fff.find_files() end, default_opts)
         map("n", "<leader>/", function() fff.live_grep() end, default_opts)
+        map("n", "<leader>r", function() fff.resume() end, default_opts)
+        map("n", "<leader>F", function() fff.find_files({ resume = true }) end, default_opts)
+        map("n", "<leader>?", function() fff.live_grep({ resume = true }) end, default_opts)
 
         map("n", "<leader>*", function()
             fff.live_grep({ query = vim.fn.expand("<cword>") })

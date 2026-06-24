@@ -10,7 +10,6 @@ return {
         },
 
         "williamboman/mason-lspconfig.nvim",
-
         "WhoIsSethDaniel/mason-tool-installer.nvim",
 
         {
@@ -47,12 +46,6 @@ return {
         local capabilities     = require('blink.cmp').get_lsp_capabilities({}, true)
 
         local servers          = {
-            clangd                = {
-                cmd = {
-                    "clangd",
-                    "--fallback-style=webkit"
-                }
-            },
             lua_ls                = {},
             emmet_language_server = {
                 filetypes = {
@@ -60,6 +53,9 @@ return {
                     "javascriptreact", "less", "sass", "blade",
                     "scss", "svelte", "typescriptreact", "vue"
                 }
+            },
+            harper_ls             = {
+                filetypes = { "typst", "markdown" }
             },
             gopls                 = {},
         }

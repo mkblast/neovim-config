@@ -20,6 +20,13 @@ return {
             recompile_no_fail     = true,
             bang_expansion        = true,
             error_regexp_table    = {
+                zig  = {
+                    regex    = [[^\s*\(.\{-}\):\([0-9]\+\):\([0-9]\+\):]],
+                    filename = 1,
+                    row      = 2,
+                    col      = 3,
+                    priority = 2,
+                },
                 jai  = {
                     regex    = [[\([^ \n():]\+\.jai\):\([0-9]\+\)\%\(,\([0-9]\+\):\)\?]],
                     filename = 1,

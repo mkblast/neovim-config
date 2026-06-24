@@ -15,6 +15,10 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>", default_opts)
 map('v', '<', '<gv', default_opts)
 map('v', '>', '>gv', default_opts)
 
+-- Misc
+map("n", "<leader>q", ":q<C-m>", default_opts);
+map("c", "<C-o>", "<C-m>", default_opts);
+
 -- file manager maps
 map("n",
     "<C-n>",
@@ -73,8 +77,8 @@ map("n", "n", "nzzzv", default_opts)
 map("n", "N", "Nzzzv", default_opts)
 
 -- find and replace
-map("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { noremap = true })
-map("v", "<leader>r", [[y:<C-u>%s/\V<C-r>"/<C-r>"/gI<Left><Left><Left>]], { noremap = true })
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]], { noremap = true })
+map("v", "<leader>s", [[y:<C-u>%s/\V<C-r>"/<C-r>"/gIc<Left><Left><Left><Left>]], { noremap = true })
 
 -- clipboard remaps
 map("x", "<leader>P", [["_dP]], default_opts)
